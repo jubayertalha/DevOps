@@ -15,3 +15,17 @@ DNS_Name=$(az network private-dns zone list \
   --output tsv)
 
 echo $DNS_Name
+
+VNetID=$(az network vnet list \
+  --resource-group vnet-rg \
+  --query "[?name=='other-vnet'].id" \
+  --output tsv)
+
+echo $VNetID
+
+az network private-dns link vnet create \
+  -g $DNS_RG \
+  -n DNS-Sever-Link \
+  -z $DNS_Name \
+  -v $VNetID \
+  -e False
