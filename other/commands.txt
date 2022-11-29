@@ -130,3 +130,7 @@ PASSWORD=$(az ad sp create-for-rbac \
   --role acrpull \
   --query "password" \
   --output tsv)
+
+
+  1234567@useR
+  http://17.2.1.6/sample/index?name=Talha
