@@ -9,9 +9,9 @@ Location=$(az group list \
 
 DNS_RG="MC_"$AKS_RG"_"$AKS_NAME"_"$Location
 
-DNS_ID=$(az network private-dns zone list \
+DNS_Name=$(az network private-dns zone list \
   -g $DNS_RG \
-  --query "[0].id" \
+  --query "[0].name" \
   --output tsv)
 
-echo $DNS_ID
+echo $DNS_Name
