@@ -18,4 +18,8 @@ sudo apt-get update
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
+sudo usermod -a -G docker azureuser
+grep docker /etc/group
+newgrp docker
+
 sudo docker run hello-world
