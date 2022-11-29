@@ -1,5 +1,8 @@
 #!/bin/sh
 
+AKS_RG=aks-rg
+AKS_NAME=aks-poc
+
 echo "Stopping AKS"
 az aks stop -g $AKS_RG -n $AKS_NAME
 
