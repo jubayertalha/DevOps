@@ -1,0 +1,47 @@
+az login --identity --username /subscriptions/863fda5d-6174-4448-8f7b-f8b0f9008431/resourcegroups/identity-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myACRId
+
+SubnetID=$(az network vnet subnet list \
+  --resource-group vnet-rg \
+  --vnet-name test-vnet \
+  --query "[?name=='aks-subnet'].id" \
+  --output tsv)
+
+
+Location=$(az group list \
+  --query "[?name=='aks-rg'].location" \
+  --output tsv)
+
+Identity=$(az identity list \
+  --resource-group identity-rg \
+  --query "[?name=='myACRId'].id" \
+  --output tsv)
+
+
+Location=$(az group list \
+  --query "[?name=='aks-rg'].location" \
+  --output tsv)
+
+
+az aks create \
+  -g aks-rg \
+  -n aks-poc \
+  --kubernetes-version 1.23.12 \
+  --location $Location \
+  --enable-managed-identity \
+  --assign-identity $Identity \
+  --nodepool-name agentpool \
+  --node-count 2 \
+  --node-vm-size Standard_D4s_v3 \
+  --vnet-subnet-id $SubnetID \
+  --load-balancer-sku Standard \
+  --network-plugin azure \
+  --network-policy calico \
+  --service-cidr 10.1.0.0/16 \
+  --dns-name-prefix akspoc \
+  --dns-service-ip 10.1.0.10 \
+  --docker-bridge-address 172.17.0.1/16 \
+  --enable-cluster-autoscaler \
+  --max-count 2 \
+  --min-count 1 \
+  --enable-private-cluster \
+  --no-ssh-key

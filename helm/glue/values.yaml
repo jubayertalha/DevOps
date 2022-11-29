@@ -1,0 +1,68 @@
+frontend:
+  deployment:
+    name: frontend-deployment
+    app: frontend
+    replicas: 1
+    image: teamcloudboost/glue-independent
+    tag: frontend
+    containerPort: 80
+
+  service:
+    name: frontend-service
+    port: 80
+    type: LoadBalancer
+    #loadBalancerIP: 10.0.10.100
+    # in:
+    #   name: frontend-service-in
+    #   port: 80
+
+backend:
+  deployment:
+    name: backend-deployment
+    app: backend
+    replicas: 1
+    image: teamcloudboost/glue-independent
+    tag: backend
+    containerPort: 9000
+
+  service:
+    name: backend-service
+    port: 9000
+
+database:
+  deployment:
+    name: database-deployment
+    app: database
+    replicas: 1
+    image: teamcloudboost/glue-independent
+    tag: database
+    containerPort: 3306
+
+  service:
+    name: database-service
+    port: 3306
+
+# secret:
+#   name: db-secret
+#   type: Opaque
+#   username: dXNlcm5hbWU=
+#   password: cGFzc3dvcmQ=
+
+secret:
+  name: db-secret
+  type: Opaque
+  username: bGFyYXZlbAo=
+  password: bGFyYXZlbAo=
+
+configmap:
+  name: glue-configmap
+  dbname: laravel
+
+env:
+  mysql_pass: MYSQL_ROOT_PASSWORD
+  db_name: APP_DB
+  db_user: APP_DB_USER
+  db_pass: APP_DB_PASS
+  server_frontend: SERVER_NAME
+  server_backend: BACK_HOST
+  server_database: DB_HOST

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.express.deployment.name }}
+  labels:
+    app: {{ .Values.express.deployment.app }}
+spec:
+  replicas: {{ .Values.express.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.express.deployment.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.express.deployment.app }}
+    spec:
+      containers:
+      - name: {{ .Values.express.deployment.app }}
+        image: {{ .Values.express.deployment.image }}
+        ports:
+        - containerPort: {{ .Values.express.deployment.containerPort }}
+        env:
+        - name: {{ .Values.express.deployment.env.username }}
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.secret.name }}
+              key: mongo-root-username
+        - name: {{ .Values.express.deployment.env.password }}
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.secret.name }}
+              key: mongo-root-password
+        - name: {{ .Values.express.deployment.env.server }}
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Values.configmap.name }}
+              key: database_url

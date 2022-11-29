@@ -1,0 +1,40 @@
+mongodb:
+  deployment:
+    name: mongodb-deployment
+    app: mongodb
+    replicas: 1
+    image: mongo
+    containerPort: 27017
+    env:
+      username: MONGO_INITDB_ROOT_USERNAME
+      password: MONGO_INITDB_ROOT_PASSWORD
+
+  service:
+    name: mongodb-service
+    port: 27017
+
+express:
+  deployment:
+    name: express-deployment
+    app: express
+    replicas: 1
+    image: mongo-express
+    containerPort: 8081
+    env:
+     username: ME_CONFIG_MONGODB_ADMINUSERNAME
+     password: ME_CONFIG_MONGODB_ADMINPASSWORD
+     server: ME_CONFIG_MONGODB_SERVER
+
+  service:
+    name: mongodb-express-service
+    type: LoadBalancer
+    port: 80
+
+secret:
+  name: mongodb-secret
+  type: Opaque
+  username: dXNlcm5hbWU=
+  password: cGFzc3dvcmQ=
+
+configmap:
+  name: mongodb-configmap

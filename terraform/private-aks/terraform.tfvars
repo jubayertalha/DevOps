@@ -1,0 +1,10 @@
+resource_group_name = "test-rg"
+cluster_name        = "test-aks"
+kubernetes_version  = "1.23.12"
+system_node_count   = 2
+system_node_vm_size = "Standard_DS2_v2"
+vnet_name           = "test-vnet"
+subnet_name         = "subnet-aks"
+service_cidr        = "10.1.0.0/16"
+dns_service_ip      = "10.1.0.10"
+docker_bridge_cidr  = "172.17.0.1/16"
