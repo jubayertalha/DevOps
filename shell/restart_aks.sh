@@ -5,6 +5,7 @@ AKS_NAME=aks-poc
 
 echo "Stopping AKS"
 az aks stop -g $AKS_RG -n $AKS_NAME
+echo "AKS stopped. Waiting 5 minutes for the cluster to start"
 
 sleep 300
 
