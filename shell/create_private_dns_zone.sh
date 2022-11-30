@@ -1,5 +1,7 @@
 #!/bin/sh
 
+az login --identity --username /subscriptions/863fda5d-6174-4448-8f7b-f8b0f9008431/resourcegroups/identity-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myACRId
+
 Link_Name=DNS-Sever-Link
 
 AKS_RG=aks-rg
@@ -18,6 +20,8 @@ VNetID=$(az network vnet list \
   --output tsv)
 
 DNS_Name="privatelink.$Location.azmk8s.io"
+
+echo "Creating Private DNS Zone: $DNS_Name"
 
 az network private-dns zone create \
   -g $AKS_RG \
