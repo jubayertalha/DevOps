@@ -1,0 +1,13 @@
+deployment:
+  name: rabbitmq-deployment
+  app: rabbitmq
+  replicas: 1
+  image: myacr221.azurecr.io/rabbitmq
+  tag: v1.0
+  containerPort: 15672
+  hostname: rabbitmq-host
+
+service:
+  name: rabbitmq-service
+  port: 80
+  type: LoadBalancer
