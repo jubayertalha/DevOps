@@ -5,7 +5,6 @@ deployment:
   image: myacr221.azurecr.io/rabbitmq
   tag: v1.0
   containerPort: 15672
-  hostname: rabbitmq-host
 
 service:
   name: rabbitmq-service
