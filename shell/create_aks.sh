@@ -44,7 +44,6 @@ az aks create \
   --location $Location \
   --enable-managed-identity \
   --assign-identity $Identity \
-  --assign-kubelet-identity $Identity \
   --nodepool-name $Nodepool_Name \
   --node-count $Nodepool_Count \
   --node-vm-size $VM_Size \
