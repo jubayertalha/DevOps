@@ -11,13 +11,10 @@ VNet_Subnet_Name=aks-subnet
 
 Identity_RG=identity-rg
 Identity_Name=myACRId
-KIdentity_Name=myKId
 
 VM_Size=Standard_D4s_v3
 Nodepool_Name=agentpool
 Nodepool_Count=2
-
-ACR_NAME=myacr221
 
 DNS_ID=$(az network private-dns zone list \
   -g $AKS_RG \
@@ -33,11 +30,6 @@ SubnetID=$(az network vnet subnet list \
 Identity=$(az identity list \
   --resource-group $Identity_RG \
   --query "[?name=='$Identity_Name'].id" \
-  --output tsv)
-
-KIdentity=$(az identity list \
-  --resource-group $Identity_RG \
-  --query "[?name=='$KIdentity_Name'].id" \
   --output tsv)
 
 Location=$(az group list \
