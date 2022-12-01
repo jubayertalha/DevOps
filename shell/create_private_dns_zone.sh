@@ -19,6 +19,8 @@ VNetID=$(az network vnet list \
   --query "[?name=='$VNet_Name'].id" \
   --output tsv)
 
+echo "VNetID: $VNetID"
+
 DNS_Name="privatelink.$Location.azmk8s.io"
 
 echo "Creating Private DNS Zone: $DNS_Name"
