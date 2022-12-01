@@ -16,6 +16,8 @@ VM_Size=Standard_D4s_v3
 Nodepool_Name=agentpool
 Nodepool_Count=2
 
+ACR_NAME=myacr221
+
 DNS_ID=$(az network private-dns zone list \
   -g $AKS_RG \
   --query "[0].id" \
@@ -44,6 +46,7 @@ az aks create \
   --location $Location \
   --enable-managed-identity \
   --assign-identity $Identity \
+  --attach-acr $ACR_NAME \
   --nodepool-name $Nodepool_Name \
   --node-count $Nodepool_Count \
   --node-vm-size $VM_Size \
