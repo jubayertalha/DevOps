@@ -11,6 +11,7 @@ VNet_Subnet_Name=aks-subnet
 
 Identity_RG=identity-rg
 Identity_Name=myACRId
+KIdentity_Name=myKId
 
 VM_Size=Standard_D4s_v3
 Nodepool_Name=agentpool
@@ -34,6 +35,11 @@ Identity=$(az identity list \
   --query "[?name=='$Identity_Name'].id" \
   --output tsv)
 
+KIdentity=$(az identity list \
+  --resource-group $Identity_RG \
+  --query "[?name=='$KIdentity_Name'].id" \
+  --output tsv)
+
 Location=$(az group list \
   --query "[?name=='$AKS_RG'].location" \
   --output tsv)
@@ -46,7 +52,7 @@ az aks create \
   --location $Location \
   --enable-managed-identity \
   --assign-identity $Identity \
-  --attach-acr $ACR_NAME \
+  --assign-kubelet-identity $KIdentity \
   --nodepool-name $Nodepool_Name \
   --node-count $Nodepool_Count \
   --node-vm-size $VM_Size \
