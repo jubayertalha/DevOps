@@ -5,6 +5,7 @@ deployment:
   image: myacr221.azurecr.io/ignite
   tag: v1.0
   containerPort: 8080
+  pullPolicy: Always
 
 service:
   name: ignite-service
