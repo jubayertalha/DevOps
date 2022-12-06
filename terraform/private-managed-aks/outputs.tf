@@ -11,7 +11,7 @@ output "aks_node_rg" {
 }
 
 output "dns_zone_id" {
-  value = data.azurerm_dns_zone.dns.id
+  value = data.azurerm_private_dns_zone.dns.id
 }
 
 output "subnet_id" {

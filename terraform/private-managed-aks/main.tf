@@ -8,7 +8,7 @@ data "azurerm_subnet" "aks" {
   resource_group_name  = var.vnet_rg
 }
 
-data "azurerm_dns_zone" "dns" {
+data "azurerm_private_dns_zone" "dns" {
   name                = var.dns_zone_name
   resource_group_name = data.azurerm_resource_group.rg.name
 }
