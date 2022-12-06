@@ -36,7 +36,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     type                = "VirtualMachineScaleSets"
     enable_auto_scaling = true
 	  vnet_subnet_id      = data.azurerm_subnet.aks.id
-    zones               = [ 1, 2, 3 ]
+    zones               = [ "1", "2", "3" ]
   }
 
   identity {
