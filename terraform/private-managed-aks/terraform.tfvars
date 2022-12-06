@@ -1,0 +1,17 @@
+resource_group_name = "aks-rg"
+subnet_name         = "aks-subnet"
+vnet_name           = "test-vnet"
+vnet_rg             = "vnet-rg"
+cluster_name        = "aks-poc"
+kubernetes_version  = "1.24.6"
+nodepoll_name       = "agentpool"
+node_vm_size        = "Standard_D4s_v3"
+node_count          = 2
+min_node_count      = 1
+max_node_count      = 3
+service_cidr        = "10.1.0.0/16"
+dns_service_ip      = "10.1.0.10"
+docker_bridge_cidr  = "172.17.0.1/16"
+dns_zone_name       = "privatelink.eastus.azmk8s.io"
+uai_name            = "myACRId"
+uai_rg              = "identity-rg"
