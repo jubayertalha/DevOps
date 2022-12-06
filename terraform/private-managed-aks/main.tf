@@ -25,7 +25,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   resource_group_name     = data.azurerm_resource_group.rg.name
   dns_prefix              = var.cluster_name
   private_cluster_enabled = true
-  private_dns_zone_id     = data.azurerm_dns_zone.dns.id
+  private_dns_zone_id     = data.azurerm_private_dns_zone.dns.id
 
   default_node_pool {
     name                = var.nodepoll_name
