@@ -140,3 +140,5 @@ PASSWORD=$(az ad sp create-for-rbac \
 
   1234567@useR
   http://17.2.1.6/sample/index?name=Demo
+
+  az aks update --enable-blob-driver -n aks-poc -g aks-rg
