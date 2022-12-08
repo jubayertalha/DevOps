@@ -20,3 +20,13 @@ spec:
         imagePullPolicy: {{ .Values.deployment.pullPolicy }}
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
+        env:
+        - name: RABBITMQ_LOGS
+          value: "/mnt/blob"
+        volumeMounts:
+        - name: mypv221
+          mountPath: "/mnt/blob"
+      volumes:
+        - name: mypv221
+          persistentVolumeClaim:
+            claimName: pvc-blob-fuse
