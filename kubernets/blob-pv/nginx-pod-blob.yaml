@@ -9,9 +9,9 @@ spec:
     - image: mcr.microsoft.com/oss/nginx/nginx:1.17.3-alpine
       name: nginx-blob
       volumeMounts:
-        - name: blob01
+        - name: mypv221
           mountPath: "/mnt/blob"
   volumes:
-    - name: blob01
+    - name: mypv221
       persistentVolumeClaim:
         claimName: pvc-blob
