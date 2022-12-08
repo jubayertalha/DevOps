@@ -142,3 +142,5 @@ PASSWORD=$(az ad sp create-for-rbac \
   http://17.2.1.6/sample/index?name=Demo
 
   az aks update --enable-blob-driver -n aks-poc -g aks-rg
+
+  kubectl create secret generic azure-secret --from-literal azurestorageaccountname=myblob221 --from-literal azurestorageaccountkey="t3XBr1HrXSIRmAEq/gLQBCmBD17KOvfe8TdIWgD3vXmxWY6ntj1B/8MDYeYWNE3LjRUSqFA88BeD+AStU/9UQQ==" --type=Opaque
