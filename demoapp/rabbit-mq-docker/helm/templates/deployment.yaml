@@ -22,7 +22,7 @@ spec:
         - containerPort: {{ .Values.deployment.containerPort }}
         env:
         - name: {{.Values.deployment.logenv}}
-          value: {{.Values.deployment.mountPath}}
+          value: {{.Values.deployment.logpath}}
         volumeMounts:
         - name: {{.Values.deployment.mountName}}
           mountPath: {{.Values.deployment.mountPath}}
