@@ -21,12 +21,12 @@ spec:
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
         env:
-        - name: RABBITMQ_LOGS
-          value: "/mnt/blob"
+        - name: {{.Values.deployment.logenv}}
+          value: {{.Values.deployment.mountPath}}
         volumeMounts:
-        - name: mypv221
-          mountPath: "/mnt/blob"
+        - name: {{.Values.deployment.mountName}}
+          mountPath: {{.Values.deployment.mountPath}}
       volumes:
-        - name: mypv221
+        - name: {{.Values.deployment.mountName}}
           persistentVolumeClaim:
-            claimName: pvc-blob-fuse
+            claimName: {{.Values.pvc.name}}

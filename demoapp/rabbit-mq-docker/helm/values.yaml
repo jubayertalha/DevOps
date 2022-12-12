@@ -6,8 +6,30 @@ deployment:
   tag: v1.0
   containerPort: 15672
   pullPolicy: Always
+  logenv: RABBITMQ_LOGS
+  mountName: logpv
+  mountPath: "/mnt/blob"
 
 service:
   name: rabbitmq-service
   port: 80
   type: LoadBalancer
+
+secret:
+  name: storage-secret
+  type: Opaque
+  azurestorageaccountname: myblob221
+  azurestorageaccountkey: "t3XBr1HrXSIRmAEq/gLQBCmBD17KOvfe8TdIWgD3vXmxWY6ntj1B/8MDYeYWNE3LjRUSqFA88BeD+AStU/9UQQ=="
+
+volume:
+  name: rabbit-pv
+  storage: 10Gi
+  accessModes: ReadWriteMany
+  reclaimPolicy: Retain
+  handle: rabbitpv221
+  containerName: mycontainer
+
+pvc:
+  name: rabbit-pvc
+  accessModes: ReadWriteMany
+  storage: 10Gi
