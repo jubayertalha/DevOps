@@ -1,0 +1,17 @@
+elastic:
+  deployment:
+    name: elastic-search-deployment
+    app: elastic-search
+    replicas: 1
+    image: elasticsearch
+    tag: 8.5.3
+    containerPortDB: 9200
+    containerPortDBName: db
+    containerPortTrans: 9300
+    containerPortTransName: trans
+    pullPolicy: Always
+
+  service:
+    name: elastic-search-service
+    port: 80
+    type: LoadBalancer

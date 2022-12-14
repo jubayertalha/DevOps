@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.elastic.deployment.name }}
+  labels:
+    app: {{ .Values.elastic.deployment.app }}
+spec:
+  replicas: {{ .Values.elastic.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.elastic.deployment.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.elastic.deployment.app }}
+    spec:
+      containers:
+      - name: {{ .Values.elastic.deployment.app }}
+        image: "{{ .Values.elastic.deployment.image }}:{{ .Values.elastic.deployment.tag }}"
+        imagePullPolicy: {{ .Values.elastic.deployment.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.elastic.deployment.containerPortDB }}
+          name: {{ .Values.elastic.deployment.containerPortDBName }}
+        - containerPort: {{ .Values.elastic.deployment.containerPortTrans }}
+          name: {{ .Values.elastic.deployment.containerPortTransName }}
