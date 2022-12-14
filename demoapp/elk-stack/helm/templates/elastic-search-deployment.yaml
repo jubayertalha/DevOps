@@ -28,6 +28,10 @@ spec:
           value: 0.0.0.0
         - name: "xpack.security.enabled"
           value: "false"
+        - name: "discovery.type"
+          value: "single-node"
+        - name: "ES_JAVA_OPTS"
+          value: "-Xms750m -Xmx750m"
       initContainers:
       - image: alpine:3.6
         name: elastic-init-sysctl
