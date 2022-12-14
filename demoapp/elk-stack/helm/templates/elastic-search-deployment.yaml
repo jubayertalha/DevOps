@@ -23,3 +23,9 @@ spec:
           name: {{ .Values.elastic.deployment.containerPortDBName }}
         - containerPort: {{ .Values.elastic.deployment.containerPortTrans }}
           name: {{ .Values.elastic.deployment.containerPortTransName }}
+      initContainers:
+      - image: alpine:3.6
+        name: elastic-init-sysctl
+        command: ['/sbin/sysctl', '-w', 'vm.max_map_count=262144']
+        securityContext:
+          privileged: true
