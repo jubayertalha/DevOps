@@ -37,3 +37,18 @@ filebeat:
     image: elastic/filebeat
     tag: 8.5.3
     pullPolicy: Always
+
+kibana:
+  deployment:
+    name: kibana-deployment
+    app: kibana
+    replicas: 1
+    image: kibana
+    tag: 8.5.3
+    containerPort: 5601
+    pullPolicy: Always
+
+  service:
+    name: elastic-search-service
+    port: 80
+    type: LoadBalancer

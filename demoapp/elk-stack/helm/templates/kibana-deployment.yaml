@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.kibana.deployment.name }}
+  labels:
+    app: {{ .Values.kibana.deployment.app }}
+spec:
+  replicas: {{ .Values.kibana.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.kibana.deployment.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.kibana.deployment.app }}
+    spec:
+      containers:
+      - name: {{ .Values.kibana.deployment.app }}
+        image: "{{ .Values.kibana.deployment.image }}:{{ .Values.kibana.deployment.tag }}"
+        imagePullPolicy: {{ .Values.kibana.deployment.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.kibana.deployment.containerPort }}
+        env:
+        - name: ELASTICSEARCH_URL
+          value: http://{{ .Values.elastic.service.name }}
