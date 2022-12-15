@@ -15,3 +15,18 @@ elastic:
     name: elastic-search-service
     port: 80
     type: LoadBalancer
+
+logstash:
+  deployment:
+    name: logstash-deployment
+    app: logstash
+    replicas: 1
+    image: logstash
+    tag: 8.5.3
+    containerPort: 5044
+    pullPolicy: Always
+    input: 
+
+  service:
+    name: logstash-service
+    port: 5044

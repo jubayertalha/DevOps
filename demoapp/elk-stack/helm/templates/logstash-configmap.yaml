@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: logstash-config
+data:
+    logstash.conf: |
+        input {
+        beats {
+            port => 5044
+        }
+        }
+        filter {
+        if [type] == "syslog" {
+            grok {
+            match => { "message" => "%{SYSLOGLINE}" }
+            }
+            date {
+            match => [ "timestamp", "MMM  d HH:mm:ss", "MMM dd HH:mm:ss" ]
+            }
+        }
+        }
+        output {
+        elasticsearch {
+            hosts => ["elastic-search-service"]
+        }
+        }
+    logstash.yml: |
+        http.host: "0.0.0.0"
+        path.config: /usr/share/logstash/pipeline
