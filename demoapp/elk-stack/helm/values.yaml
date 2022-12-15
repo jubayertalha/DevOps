@@ -49,6 +49,6 @@ kibana:
     pullPolicy: Always
 
   service:
-    name: elastic-search-service
+    name: kibana-service
     port: 80
     type: LoadBalancer
