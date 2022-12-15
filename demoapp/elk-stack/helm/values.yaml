@@ -25,8 +25,15 @@ logstash:
     tag: 8.5.3
     containerPort: 5044
     pullPolicy: Always
-    input: 
 
   service:
     name: logstash-service
     port: 5044
+
+filebeat:
+  deployment:
+    name: filebeat-deployment
+    app: filebeat
+    image: elastic/filebeat
+    tag: 8.5.3
+    pullPolicy: Always
