@@ -34,7 +34,7 @@ spec:
                 path: logstash.yml
         - name: pipeline-volume
           configMap:
-            name: logstash-pipeline
+            name: logstash-config
             items:
               - key: logstash.conf
                 path: logstash.conf
