@@ -21,9 +21,7 @@ data:
         }
         output {
         elasticsearch {
-            host => "elastic-search-service:80"
-            protocol => "http"
-            port => 80
+            hosts => ["elastic-search-service:80"]
         }
         }
     logstash.yml: |
