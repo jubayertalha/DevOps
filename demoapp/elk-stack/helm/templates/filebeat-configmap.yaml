@@ -6,6 +6,7 @@ data:
   filebeat.yml: |-
     filebeat.inputs:
     - type: filestream
+      enable: true
       id: my-filestream-id
       paths:
         - /mnt/blob/rabbit.log
