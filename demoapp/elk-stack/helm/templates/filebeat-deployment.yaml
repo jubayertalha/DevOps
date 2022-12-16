@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: DaemonSet
+kind: Deployment
 metadata:
   name: {{ .Values.filebeat.deployment.name }}
   labels:
@@ -13,8 +13,6 @@ spec:
       labels:
         app: {{ .Values.filebeat.deployment.app }}
     spec:
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
       containers:
       - name: {{ .Values.filebeat.deployment.app }}
         image: "{{ .Values.filebeat.deployment.image }}:{{ .Values.filebeat.deployment.tag }}"
@@ -23,13 +21,6 @@ spec:
           "-c", "/etc/filebeat.yml",
           "-e",
         ]
-        env:
-        - name: NODE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        securityContext:
-          runAsUser: 0
         volumeMounts:
         - name: config
           mountPath: /etc/filebeat.yml
