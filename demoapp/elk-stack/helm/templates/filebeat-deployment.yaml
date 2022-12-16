@@ -26,14 +26,6 @@ spec:
           mountPath: /etc/filebeat.yml
           readOnly: true
           subPath: filebeat.yml
-        - name: data
-          mountPath: /usr/share/filebeat/data
-        - name: varlibdockercontainers
-          mountPath: /var/lib/docker/containers
-          readOnly: true
-        - name: varlog
-          mountPath: /var/log
-          readOnly: true
         - name: rabbit
           mountPath: /mnt/blob
       volumes:
@@ -41,16 +33,6 @@ spec:
         configMap:
           defaultMode: 0640
           name: filebeat-config
-      - name: varlibdockercontainers
-        hostPath:
-          path: /var/lib/docker/containers
-      - name: varlog
-        hostPath:
-          path: /var/log
       - name: rabbit
         persistentVolumeClaim:
             claimName: rabbit-pvc
-      - name: data
-        hostPath:
-          path: /var/lib/filebeat-data
-          type: DirectoryOrCreate

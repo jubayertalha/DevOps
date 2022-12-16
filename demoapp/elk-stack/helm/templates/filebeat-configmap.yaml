@@ -10,8 +10,6 @@ data:
       id: my-filestream-id
       paths:
         - /mnt/blob/rabbit.log
-        - /var/log/messages
-        - /var/log/*.log
 
     output.logstash:
       hosts: ['logstash-service']
