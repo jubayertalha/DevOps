@@ -21,5 +21,5 @@ spec:
         ports:
         - containerPort: {{ .Values.kibana.deployment.containerPort }}
         env:
-        - name: ELASTICSEARCH_URL
+        - name: ELASTICSEARCH_HOSTS
           value: http://{{ .Values.elastic.service.name }}
