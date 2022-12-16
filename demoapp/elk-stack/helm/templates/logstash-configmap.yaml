@@ -21,9 +21,13 @@ data:
         }
         output {
         elasticsearch {
-            hosts => ["elastic-search-service:80"]
+            host => "elastic-search-service:80"
+            protocol => "http"
+            port => 80
         }
         }
     logstash.yml: |
         http.host: "0.0.0.0"
         path.config: /usr/share/logstash/pipeline
+        xpack.monitoring.enabled: true
+        xpack.monitoring.elasticsearch.url: ["http://elastic-search-service:80"]
