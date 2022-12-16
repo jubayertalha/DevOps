@@ -43,6 +43,9 @@ spec:
         - name: varlog
           mountPath: /var/log
           readOnly: true
+        - name: rabbit
+          mountPath: /mnt/blob
+          readOnly: true
       volumes:
       - name: config
         configMap:
@@ -54,6 +57,9 @@ spec:
       - name: varlog
         hostPath:
           path: /var/log
+      - name: rabbit
+        hostPath:
+          path: /mnt/blob
       - name: data
         hostPath:
           path: /var/lib/filebeat-data
