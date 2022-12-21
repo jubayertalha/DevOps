@@ -16,7 +16,7 @@ deployment:
   configName: rabbitmq-config
   configMount: config-volume
   configKey: rabbitmg.conf
-  configPath: "usr/share/rabbit/config"
+  configPath: "/usr/share/rabbit/config"
 
 service:
   name: rabbitmq-service
