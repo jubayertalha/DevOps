@@ -6,6 +6,6 @@ data:
   enabled_plugins: |
     [rabbitma_web_dispatch, rabbitmq_management, rabbitmq_peer_discovery_k8s, rabbitma_prometheus. ].
 
-  rabbitmg.conf: |-
+  rabbitmq.conf: |-
     default_user=user 
     default_pass=CHANGEME
