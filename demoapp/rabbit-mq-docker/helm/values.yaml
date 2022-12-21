@@ -8,6 +8,8 @@ deployment:
   pullPolicy: Always
   logenv: RABBITMQ_LOGS
   logpath: "/mnt/blob/rabbit.log"
+  userenv: RABBITMQ_DEFAULT_USER
+  passenv: RABBITMQ_DEFAULT_PASS
   mountName: logpv
   mountPath: "/mnt/blob"
 
@@ -20,7 +22,13 @@ secret:
   name: storage-secret
   type: Opaque
   azurestorageaccountname: myblob221
-  azurestorageaccountkey: "t3XBr1HrXSIRmAEq/gLQBCmBD17KOvfe8TdIWgD3vXmxWY6ntj1B/8MDYeYWNE3LjRUSqFA88BeD+AStU/9UQQ=="
+  azurestorageaccountkey: "ezfxxW0gsext9cK7uOVkH2N07xAru7wzfnAT6q+6P26G9Ld65f+wyHu5HUs527PmLvQLBStIl1gf+AStLPWOuQ=="
+
+crsecret:
+  name: cred-secret
+  type: Opaque
+  username: dXNlcg==
+  password: cGFzc3dvcmQ=
 
 volume:
   name: rabbit-pv
