@@ -24,7 +24,7 @@ spec:
         - name: {{.Values.deployment.logenv}}
           value: {{.Values.deployment.logpath}}
         - name: {{.Values.deployment.configEnv}}
-          value: {{.Values.deployment.configPath}}
+          value: {{.Values.deployment.configFilePath}}
         volumeMounts:
         - name: {{.Values.deployment.mountName}}
           mountPath: {{.Values.deployment.mountPath}}
