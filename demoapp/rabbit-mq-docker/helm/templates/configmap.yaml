@@ -7,5 +7,11 @@ data:
     [rabbitma_web_dispatch, rabbitmq_management, rabbitmq_peer_discovery_k8s, rabbitma_prometheus. ].
 
   rabbitmq.conf: |-
+    default_vhost = /
     default_user=user 
-    default_pass=CHANGEME
+    default_pass=password
+    default_user_tags.administrator = true
+    default_user_tags.management = true
+    default_permissions.configure = .*
+    default_permissions.read = .*
+    default_permissions.write = .*
