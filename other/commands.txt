@@ -148,3 +148,8 @@ PASSWORD=$(az ad sp create-for-rbac \
   kubectl exec --stdin --tty nginx-blob -- sh
 
   kubectl create secret generic azure-secret --from-literal azurestorageaccountname=myblob221 --from-literal azurestorageaccountkey="t3XBr1HrXSIRmAEq/gLQBCmBD17KOvfe8TdIWgD3vXmxWY6ntj1B/8MDYeYWNE3LjRUSqFA88BeD+AStU/9UQQ==" --type=Opaque
+
+
+##encode 64bit
+  echo -n 'my-string' | base64
+  echo -n 'bXktc3RyaW5n' | base64 --decode
