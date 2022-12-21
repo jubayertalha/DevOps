@@ -8,8 +8,6 @@ deployment:
   pullPolicy: Always
   logenv: RABBITMQ_LOGS
   logpath: "/mnt/blob/rabbit.log"
-  userenv: RABBITMQ_DEFAULT_USER
-  passenv: RABBITMQ_DEFAULT_PASS
   mountName: logpv
   mountPath: "/mnt/blob"
   configEnv: RABBITMQ_CONFIG_FILES
