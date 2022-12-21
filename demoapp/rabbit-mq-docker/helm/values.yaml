@@ -15,7 +15,7 @@ deployment:
   configEnv: RABBITMQ_CONFIG_FILE
   configName: rabbitmq-config
   configMount: config-volume
-  configKey: rabbitmg.conf
+  configKey: rabbitmq.conf
   configPath: "/etc/rabbitmq"
   configFilePath: "/etc/rabbitmq/rabbitmq.conf"
 
