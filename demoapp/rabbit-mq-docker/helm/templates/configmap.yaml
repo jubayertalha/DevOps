@@ -4,7 +4,7 @@ metadata:
   name: {{.Values.deployment.configName}}
 data:
   enabled_plugins: |
-    [rabbitma_web_dispatch, rabbitmq_management, rabbitmq_peer_discovery_k8s, rabbitma_prometheus. ].
+    [rabbitma_web_dispatch, rabbitmq_management, rabbitmq_peer_discovery_k8s, rabbitma_prometheus].
 
   rabbitmq.conf: |-
     default_vhost = /

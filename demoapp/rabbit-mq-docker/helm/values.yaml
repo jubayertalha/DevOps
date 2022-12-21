@@ -17,7 +17,9 @@ deployment:
   configMount: config-volume
   configKey: rabbitmq.conf
   configPath: "/etc/rabbitmq/conf.d"
-  configFilePath: "/etc/rabbitmq/conf.d"
+  pluginMount: plugin-volume
+  pluginKey: enabled_plugins
+  pluginPath: "/etc/rabbitmq"
 
 
 service:

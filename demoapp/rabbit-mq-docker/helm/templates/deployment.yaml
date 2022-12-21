@@ -24,12 +24,14 @@ spec:
         - name: {{.Values.deployment.logenv}}
           value: {{.Values.deployment.logpath}}
         - name: {{.Values.deployment.configEnv}}
-          value: {{.Values.deployment.configFilePath}}
+          value: {{.Values.deployment.configPath}}
         volumeMounts:
         - name: {{.Values.deployment.mountName}}
           mountPath: {{.Values.deployment.mountPath}}
         - name: {{.Values.deployment.configMount}}
           mountPath: {{.Values.deployment.configPath}}
+        - name: {{.Values.deployment.pluginMount}}
+          mountPath: {{.Values.deployment.pluginPath}}
       volumes:
         - name: {{.Values.deployment.configMount}}
           configMap:
@@ -37,6 +39,12 @@ spec:
             items:
               - key: {{.Values.deployment.configKey}}
                 path: {{.Values.deployment.configKey}}
+        - name: {{.Values.deployment.pluginMount}}
+          configMap:
+            name: {{.Values.deployment.configName}}
+            items:
+              - key: {{.Values.deployment.pluginKey}}
+                path: {{.Values.deployment.pluginKey}}
         - name: {{.Values.deployment.mountName}}
           persistentVolumeClaim:
             claimName: {{.Values.pvc.name}}
