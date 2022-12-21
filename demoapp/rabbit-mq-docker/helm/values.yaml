@@ -19,7 +19,6 @@ deployment:
   pluginKey: enabled_plugins
   pluginPath: "/etc/rabbitmq"
 
-
 service:
   name: rabbitmq-service
   port: 80
