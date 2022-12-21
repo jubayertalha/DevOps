@@ -16,7 +16,7 @@ deployment:
   configName: rabbitmq-config
   configMount: config-volume
   configKey: rabbitmg.conf
-  configPath: "/var/config"
+  configPath: "/etc/rabbitmq/"
 
 service:
   name: rabbitmq-service
