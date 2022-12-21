@@ -23,20 +23,20 @@ spec:
         env:
         - name: {{.Values.deployment.logenv}}
           value: {{.Values.deployment.logpath}}
-        - name: {{.Values.deployment.userenv}}
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.crsecret.name }}
-              key: username
-        - name: {{.Values.deployment.passenv}}
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.crsecret.name }}
-              key: password
+        - name: {{.Values.deployment.configEnv}}
+          value: {{.Values.deployment.configPath}}
         volumeMounts:
         - name: {{.Values.deployment.mountName}}
           mountPath: {{.Values.deployment.mountPath}}
+        - name: {{.Values.deployment.configMount}}
+          mountPath: {{.Values.deployment.configPath}}
       volumes:
+        - name: {{.Values.deployment.configMount}}
+          configMap:
+            name: {{.Values.deployment.configName}}
+            items:
+              - key: {{.Values.deployment.configKey}}
+                path: {{.Values.deployment.configKey}}
         - name: {{.Values.deployment.mountName}}
           persistentVolumeClaim:
             claimName: {{.Values.pvc.name}}

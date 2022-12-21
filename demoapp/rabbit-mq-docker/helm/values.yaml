@@ -12,6 +12,11 @@ deployment:
   passenv: RABBITMQ_DEFAULT_PASS
   mountName: logpv
   mountPath: "/mnt/blob"
+  configEnv: RABBITMQ_CONFIG_FILE
+  configName: rabbitmq-config
+  configMount: config-volume
+  configKey: rabbitmg.conf
+  configPath: "usr/share/rabbit/config"
 
 service:
   name: rabbitmq-service
@@ -23,12 +28,6 @@ secret:
   type: Opaque
   azurestorageaccountname: myblob221
   azurestorageaccountkey: "ezfxxW0gsext9cK7uOVkH2N07xAru7wzfnAT6q+6P26G9Ld65f+wyHu5HUs527PmLvQLBStIl1gf+AStLPWOuQ=="
-
-crsecret:
-  name: cred-secret
-  type: Opaque
-  username: dXNlcg==
-  password: cGFzc3dvcmQ=
 
 volume:
   name: rabbit-pv
