@@ -15,3 +15,4 @@ frontend:
 
 namespace:
   name: test
+  label: demo
