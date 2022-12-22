@@ -12,3 +12,7 @@ frontend:
     name: frontend-service
     port: 80
     type: LoadBalancer
+
+namespace:
+  name: test
+  lable: demo
