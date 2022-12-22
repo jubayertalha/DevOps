@@ -45,4 +45,4 @@ pvc:
 
 namespace:
   name: test
-  lable: demo
+  label: demo
