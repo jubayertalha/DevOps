@@ -31,3 +31,7 @@ pvc:
   name: config-pvc
   accessModes: ReadWriteMany
   storage: 10Gi
+
+mount:
+  name: config-mount
+  path: "/var/spring/shared"

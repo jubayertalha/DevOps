@@ -20,3 +20,10 @@ spec:
         imagePullPolicy: {{ .Values.frontend.deployment.pullPolicy }}
         ports:
         - containerPort: {{ .Values.frontend.deployment.containerPort }}
+        volumeMounts:
+        - name: {{.Values.mount.name}}
+          mountPath: {{.Values.mount.path}}
+      volumes:
+        - name: {{.Values.mount.name}}
+          persistentVolumeClaim:
+            claimName: {{.Values.pvc.name}}
