@@ -42,7 +42,3 @@ pvc:
   name: rabbit-pvc
   accessModes: ReadWriteMany
   storage: 10Gi
-
-namespace:
-  name: test
-  label: demo
