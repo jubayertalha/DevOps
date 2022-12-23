@@ -20,10 +20,17 @@ spec:
         imagePullPolicy: {{ .Values.frontend.deployment.pullPolicy }}
         ports:
         - containerPort: {{ .Values.frontend.deployment.containerPort }}
+        env:
+        - name: {{ .Values.env.JDBC_CONNECTION.name }}
+          value: {{ .Values.env.JDBC_CONNECTION.value }}
+        - name: {{ .Values.env.READ_UNCOMMITTED_JDBC_CONNECTION.name }}
+          value: {{ .Values.env.READ_UNCOMMITTED_JDBC_CONNECTION.value }}
+        - name: {{ .Values.env.REPORTING_JDBC_CONNECTION.name }}
+          value: {{ .Values.env.REPORTING_JDBC_CONNECTION.value }}
         volumeMounts:
-        - name: {{.Values.mount.name}}
-          mountPath: {{.Values.mount.path}}
+        - name: {{ .Values.mount.name }}
+          mountPath: {{ .Values.mount.path }}
       volumes:
-        - name: {{.Values.mount.name}}
+        - name: {{ .Values.mount.name }}
           persistentVolumeClaim:
-            claimName: {{.Values.pvc.name}}
+            claimName: {{ .Values.pvc.name }}

@@ -13,6 +13,17 @@ frontend:
     port: 80
     type: LoadBalancer
 
+env:
+  JDBC_CONNECTION:
+    name: JDBC_CONNECTION
+    value: "jdbc:sqlserver://host.docker.internal;databaseName=develop;sendStringParametersAsUnicode=false;user=developerHead;password=developerHead;encrypt=true;trustServerCertificate=true;"
+  READ_UNCOMMITTED_JDBC_CONNECTION:
+    name: READ_UNCOMMITTED_JDBC_CONNECTION
+    value: "jdbc:sqlserver://host.docker.internal;databaseName=develop;sendStringParametersAsUnicode=false;user=developerHead;password=developerHead;encrypt=true;trustServerCertificate=true;"
+  REPORTING_JDBC_CONNECTION:
+    name: REPORTING_JDBC_CONNECTION
+    value: "jdbc:sqlserver://host.docker.internal;databaseName=develop-R;sendStringParametersAsUnicode=false;user=developerHead;password=developerHead;encrypt=true;trustServerCertificate=true;"
+
 secret:
   name: storage-secret
   type: Opaque
