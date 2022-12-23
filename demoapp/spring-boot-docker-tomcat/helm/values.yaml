@@ -12,3 +12,22 @@ frontend:
     name: frontend-service
     port: 80
     type: LoadBalancer
+
+secret:
+  name: storage-secret
+  type: Opaque
+  azurestorageaccountname: myblob221
+  azurestorageaccountkey: "ezfxxW0gsext9cK7uOVkH2N07xAru7wzfnAT6q+6P26G9Ld65f+wyHu5HUs527PmLvQLBStIl1gf+AStLPWOuQ=="
+
+volume:
+  name: config-pv
+  storage: 10Gi
+  accessModes: ReadWriteMany
+  reclaimPolicy: Retain
+  handle: configpv221
+  containerName: datacontainer
+
+pvc:
+  name: config-pvc
+  accessModes: ReadWriteMany
+  storage: 10Gi
