@@ -153,3 +153,27 @@ PASSWORD=$(az ad sp create-for-rbac \
 ##encode 64bit
   echo -n 'my-string' | base64
   echo -n 'bXktc3RyaW5n' | base64 --decode
+
+
+##self sign tls cert
+  openssl req \
+    -x509 \
+    -newkey rsa:4096 \
+    -sha256 \
+    -nodes \
+    -keyout tls.key \
+    -out tls.crt \
+    -subj "/CN=app.internal.com" \
+    -days 365 
+
+----Other way
+  openssl genrsa -out key.pem 2048
+  openssl req -new -sha256 -key key.pem -out csr.csr
+  openssl req -x509 -sha256 -days 365 -key key.pem -in csr.csr -out certificate.pem
+  openssl pkcs12 -export -inkey key.pem -in certificate.pem -out certificate.pfx
+  //optional
+  openssl x509 -inform PEM -in certificate.pem -outform DER -out certificate.cer
+  openssl x509 -noout -fingerprint -sha1 -inform dec -in certificate.cer
+
+## App Gateway
+  az network application-gateway root-cert list --gateway-name app-gw -g aks-rg
