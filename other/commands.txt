@@ -175,5 +175,36 @@ PASSWORD=$(az ad sp create-for-rbac \
   openssl x509 -inform PEM -in certificate.pem -outform DER -out certificate.cer
   openssl x509 -noout -fingerprint -sha1 -inform dec -in certificate.cer
 
+  //convert pem to pfx
+  openssl pkcs12 -export -out certificate.pfx -inkey privateKey.key -in certificate.crt
+
+
+  //with CA
+  https://github.com/ChristianLempa/cheat-sheets/blob/main/misc/ssl-certs.md
+  //CA
+  //KEY
+  openssl genrsa -aes256 -out ca-key.pem 4096
+  openssl req -new -x509 -sha256 -days 365 -key ca-key.pem -out ca.pem
+  //cert
+  openssl genrsa -out cert-key.pem 4096
+  openssl req -new -sha256 -subj "/CN=internal" -key cert-key.pem -out cert.csr
+  echo "subjectAltName=DNS:*.internal.com,IP:17.2.2.10" >> extfile.cnf
+  openssl x509 -req -sha256 -days 365 -in cert.csr -CA ca.pem -CAkey ca-key.pem -out cert.pem -extfile extfile.cnf -CAcreateserial
+  //chain 
+  cat cert.pem > chain.pem
+  cat ca.pem >> chain.pem
+  //convert
+  //cert convert
+  openssl pkcs12 -export -inkey cert-key.pem -in cert.pem -out cert.pfx
+  //chain convert
+  openssl pkcs12 -export -inkey cert-key.pem -in chain.pem -out chain.pfx
+  //verify
+  //cert verify
+  openssl verify -CAfile ca.pem -verbose cert.pem
+  //chain verify
+  openssl verify -CAfile ca.pem -verbose chain.pem
+
+
+
 ## App Gateway
   az network application-gateway root-cert list --gateway-name app-gw -g aks-rg
