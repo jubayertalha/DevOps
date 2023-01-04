@@ -6,7 +6,7 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - {{ .Values.ingress.host }}
+    - spring.internal.com
     secretName: {{ .Values.tlsSecret.name }}
   rules:
     - host: {{ .Values.ingress.host }}
