@@ -17,5 +17,5 @@ spec:
             path: {{ .Values.ingress.path }}
   tls:
     - hosts:
-      - {{ .Values.ingress.host }}
+      - spring.internal.com
       secretName: {{ .Values.tlsSecret.name }}
