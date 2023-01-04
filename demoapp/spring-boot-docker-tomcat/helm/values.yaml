@@ -54,5 +54,5 @@ tlsSecret:
 
 ingress:
   name: spring-ingress
-  hots: spring.internal.com
+  hots: "spring.internal.com"
   path: /
