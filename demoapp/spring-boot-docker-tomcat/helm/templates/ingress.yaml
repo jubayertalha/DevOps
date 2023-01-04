@@ -17,5 +17,5 @@ spec:
             path: {{ .Values.ingress.path }}
   tls:
     - hosts:
-      - spring.internal.com
+      - app.talhajubayer.me
       secretName: {{ .Values.tlsSecret.name }}
