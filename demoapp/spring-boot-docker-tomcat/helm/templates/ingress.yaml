@@ -5,9 +5,9 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-  - hosts:
-    - spring.internal.com
-    secretName: {{ .Values.tlsSecret.name }}
+    - hosts:
+      - {{ .Values.ingress.host }}
+      secretName: {{ .Values.tlsSecret.name }}
   rules:
     - host: {{ .Values.ingress.host }}
     http:
