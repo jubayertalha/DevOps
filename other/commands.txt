@@ -154,6 +154,9 @@ PASSWORD=$(az ad sp create-for-rbac \
   echo -n 'my-string' | base64
   echo -n 'bXktc3RyaW5n' | base64 --decode
 
+##yaml checker
+  https://www.yamllint.com/
+
 
 ##self sign tls cert
   openssl req \
