@@ -5,7 +5,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: {{ .Values.springboot.host }}
+    - host: "{{ .Values.springboot.host }}"
       http:
         paths:
           - pathType: Prefix
