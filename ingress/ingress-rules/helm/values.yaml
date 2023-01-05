@@ -1,0 +1,14 @@
+ingress:
+  name: spring-ingress
+
+springboot:
+  name: frontend-service
+  port: 8080
+  hots: spring.internal.com
+  path: /
+
+rabbitmq:
+  name: rabbitmq-service
+  port: 15672
+  hots: rabbitmq.internal.com
+  path: /
