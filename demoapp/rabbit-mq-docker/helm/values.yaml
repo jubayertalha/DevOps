@@ -41,3 +41,9 @@ pvc:
   name: rabbit-pvc
   accessModes: ReadWriteMany
   storage: 10Gi
+  
+ingress:
+  name: rabbit-ingress
+  class: nginx
+  path: /
+  pathType: Prefix
