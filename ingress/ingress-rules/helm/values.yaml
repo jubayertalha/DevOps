@@ -1,15 +1,15 @@
 ingress:
-  nameA: spring-ingress
-  nameB: rabbit-ingress
+  name: app-ingress
+  class: nginx
 
 springboot:
   name: frontend-service
   port: 8080
-  hots: spring.internal.com
   path: /
+  pathType: Prefix
 
 rabbitmq:
   name: rabbitmq-service
   port: 15672
-  hots: rabbitmq.internal.com
   path: /
+  pathType: Prefix

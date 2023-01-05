@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.ingress.name }}
+spec:
+  ingressClassName: {{ .Values.ingress.class }}
+  rules:
+    - host: spring.internal.com
+      http:
+        paths:
+          - pathType: {{ .Values.springboot.pathType }}
+            backend:
+              service:
+                name: {{ .Values.springboot.name }}
+                port:
+                  number: {{ .Values.springboot.port }}
+            path: {{ .Values.springboot.path }}
+    - host: rabbitmq.internal.com
+      http:
+        paths:
+          - pathType: {{ .Values.rabbitmq.pathType }}
+            backend:
+              service:
+                name: {{ .Values.rabbitmq.name }}
+                port:
+                  number: {{ .Values.rabbitmq.port }}
+            path: {{ .Values.rabbitmq.path }}
