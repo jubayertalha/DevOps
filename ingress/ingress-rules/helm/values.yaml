@@ -1,5 +1,6 @@
 ingress:
-  name: spring-ingress
+  nameA: spring-ingress
+  nameB: rabbit-ingress
 
 springboot:
   name: frontend-service
