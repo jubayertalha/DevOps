@@ -15,7 +15,3 @@ spec:
                 port:
                   number: {{ .Values.frontend.service.port }}
             path: {{ .Values.ingress.path }}
-  tls:
-    - hosts:
-      - spring.internal.com
-      secretName: selfca-ingress-tls
