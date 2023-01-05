@@ -21,8 +21,7 @@ deployment:
 
 service:
   name: rabbitmq-service
-  port: 80
-  type: LoadBalancer
+  port: 15672
 
 secret:
   name: storage-secret
@@ -42,3 +41,8 @@ pvc:
   name: rabbit-pvc
   accessModes: ReadWriteMany
   storage: 10Gi
+
+ingress:
+  name: rabbit-ingress
+  hots: rabbit.internal.com
+  path: /
