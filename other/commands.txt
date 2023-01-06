@@ -182,6 +182,7 @@ PASSWORD=$(az ad sp create-for-rbac \
   openssl pkcs12 -export -out certificate.pfx -inkey privateKey.key -in certificate.crt
 
   //convert pem to crt
+  https://stackoverflow.com/questions/13732826/convert-pem-to-crt-and-key
   openssl x509 -outform der -in your-cert.pem -out your-cert.crt
   //convert pem to key
   openssl rsa -in privkey.pem -out private.key
