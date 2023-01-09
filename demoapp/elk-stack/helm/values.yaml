@@ -52,3 +52,9 @@ kibana:
     name: kibana-service
     port: 80
     type: LoadBalancer
+  
+ingress:
+  name: elk-ingress
+  class: nginx
+  path: /
+  pathType: Prefix
