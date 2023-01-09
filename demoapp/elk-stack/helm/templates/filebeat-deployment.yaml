@@ -23,9 +23,9 @@ spec:
         ]
         env:
         - name: NODE_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: spec.nodeName
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
         volumeMounts:
         - name: config
           mountPath: /etc/filebeat.yml
