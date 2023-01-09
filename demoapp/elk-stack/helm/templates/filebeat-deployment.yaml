@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: DeamonSet
 metadata:
   name: {{ .Values.filebeat.deployment.name }}
   labels:
@@ -12,6 +12,10 @@ spec:
     metadata:
       labels:
         app: {{ .Values.filebeat.deployment.app }}
+      annotations:
+        co.elastic.logs/enabled: "true"
+        co.elastic.logs/fileset.stdout: log
+        co.elastic.logs/pipeline: custom-pipeline
     spec:
       serviceAccountName: filebeat
       terminationGracePeriodSeconds: 30

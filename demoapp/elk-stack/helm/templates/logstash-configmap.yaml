@@ -10,19 +10,34 @@ data:
         }
         }
         filter {
-        if [type] == "syslog" {
+        if [fields][log-source] == "logfile" {
             grok {
-            match => { "message" => "%{SYSLOGLINE}" }
+                match => { "message" => "%{TIMESTAMP_ISO8601:time}:%{WORD:service} %{LOGLEVEL:loglevel} %{DATA:thread_name} \[%{DATA:src_file}:%{NUMBER:line}\] - %{GREEDYDATA:msg}" }
             }
-            date {
-            match => [ "timestamp", "MMM  d HH:mm:ss", "MMM dd HH:mm:ss" ]
+            mutate {
+                add_field => { "tmp_path" => "%{[log][file][path]}" }
+            }
+            mutate {
+                split => ["tmp_path", "#"]
+                add_field => { "kubernetes.node.name" => "%{tmp_path[2]}" }
+                add_field => { "kubernetes.namespace" => "%{tmp_path[3]}" }
+                add_field => { "tmp_podname" => "%{tmp_path[4]}" }
+            }
+            mutate {
+                split => ["tmp_podname", "."]
+                add_field => { "kubernetes.pod.name" => "%{tmp_podname[0]}" }
+            }
+            mutate {
+                remove_field => [ "tmp_path", "tmp_podname" ]
             }
         }
         }
         output {
         elasticsearch {
             hosts => ["elastic-search-service:80"]
+            index => "logstash-%{+YYYY.MM.dd}"
         }
+        stdout { codec => rubydebug }
         }
     logstash.yml: |
         http.host: "0.0.0.0"
