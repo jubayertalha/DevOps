@@ -13,6 +13,10 @@ spec:
       labels:
         app: {{ .Values.filebeat.deployment.app }}
     spec:
+      serviceAccountName: filebeat
+      terminationGracePeriodSeconds: 30
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
       - name: {{ .Values.filebeat.deployment.app }}
         image: "{{ .Values.filebeat.deployment.image }}:{{ .Values.filebeat.deployment.tag }}"
