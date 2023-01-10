@@ -24,8 +24,8 @@ spec:
         - containerPort: {{ .Values.elastic.deployment.containerPortTrans }}
           name: {{ .Values.elastic.deployment.containerPortTransName }}
         env:
-        # - name: "network.host"
-        #   value: 0.0.0.0
+        - name: "network.host"
+          value: 0.0.0.0
         - name: "xpack.security.enabled"
           value: "false"
         - name: "discovery.type"
