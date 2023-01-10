@@ -4,12 +4,12 @@ metadata:
   name: filebeat-config
 data:
   filebeat.yml: |-
-    # filebeat.inputs:
-    # - type: filestream
-    #   enable: true
-    #   id: my-filestream-id
-    #   paths:
-    #     - /mnt/blob/rabbit.log
+    filebeat.inputs:
+    - type: filestream
+      enable: true
+      id: my-filestream-id
+      paths:
+        - /mnt/blob/rabbit.log
 
     # filebeat.autodiscover:
     #   providers:
