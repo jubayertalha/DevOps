@@ -35,9 +35,9 @@ data:
         output {
         elasticsearch {
             hosts => ["elastic-search-service:80"]
-            index => "logstash-%{+YYYY.MM.dd}"
+            index => "logstash"
+            action => "create"
         }
-        stdout { codec => rubydebug }
         }
     logstash.yml: |
         # http.host: "0.0.0.0"
