@@ -14,8 +14,8 @@ spec:
         app: {{ .Values.filebeat.deployment.app }}
       annotations:
         co.elastic.logs/enabled: "true"
-        co.elastic.logs/fileset.stdout: log
-        co.elastic.logs/pipeline: custom-pipeline
+        co.elastic.logs/fileset: access
+        co.elastic.logs/pipeline: main
     spec:
       serviceAccountName: filebeat
       terminationGracePeriodSeconds: 30
