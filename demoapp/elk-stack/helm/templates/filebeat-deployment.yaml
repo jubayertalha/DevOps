@@ -41,6 +41,8 @@ spec:
           subPath: filebeat.yml
         - name: rabbit
           mountPath: /mnt/blob
+        - name: varlog
+          mountPath: /var/log
       volumes:
       - name: config
         configMap:
@@ -49,3 +51,6 @@ spec:
       - name: rabbit
         persistentVolumeClaim:
             claimName: rabbit-pvc
+      - name: varlog
+        hostPath:
+          path: /var/log
