@@ -35,8 +35,6 @@ data:
         output {
         elasticsearch {
             hosts => ["elastic-search-service:80"]
-            index => "logstash"
-            action => "create"
         }
         }
     logstash.yml: |
