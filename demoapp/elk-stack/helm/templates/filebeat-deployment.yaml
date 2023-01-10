@@ -15,7 +15,7 @@ spec:
       annotations:
         co.elastic.logs/enabled: "true"
         co.elastic.logs/fileset: access
-        co.elastic.logs/pipeline: main
+        # co.elastic.logs/pipeline: main
     spec:
       serviceAccountName: filebeat
       terminationGracePeriodSeconds: 30
