@@ -24,9 +24,9 @@ data:
       providers:
         - type: kubernetes
           templates:
-            - condition:
-                equals:
-                  kubernetes.container.name : frontend 
+            # - condition:
+            #     equals:
+            #       kubernetes.container.name : frontend 
               config:
                 - type: container
                   paths:
