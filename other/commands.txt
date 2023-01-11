@@ -214,6 +214,13 @@ PASSWORD=$(az ad sp create-for-rbac \
   openssl verify -CAfile ca.pem -verbose chain.pem
 
 
+///////Convert pfx to crt and key
+
+  openssl pkcs12 -in cert.pfx -nocerts -out private.key
+  openssl pkcs12 -in cert.pfx -clcerts -nokeys -out cert.crt
+  openssl rsa -in private.key -out tls.key
+
+
 
 ## App Gateway
   az network application-gateway root-cert list --gateway-name app-gw -g aks-rg
