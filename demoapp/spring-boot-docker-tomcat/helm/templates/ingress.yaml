@@ -5,7 +5,7 @@ metadata:
 spec:
   ingressClassName: {{ .Values.ingress.class }}
   rules:
-    - host: spring.internal.com
+    - host: {{ .Values.ingress.host | nindent 2 }}.internal.com
       http:
         paths:
           - pathType: {{ .Values.ingress.pathType }}

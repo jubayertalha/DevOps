@@ -51,3 +51,4 @@ ingress:
   class: nginx
   path: /
   pathType: Prefix
+  host: app
