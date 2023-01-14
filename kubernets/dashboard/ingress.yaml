@@ -7,7 +7,7 @@ spec:
   ingressClassName: nginx
   rules:
     - host: dashboard.internal.com
-      http:
+      https:
         paths:
           - pathType: Prefix
             backend:
