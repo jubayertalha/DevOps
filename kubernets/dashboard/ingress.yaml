@@ -4,7 +4,7 @@ metadata:
   name: kubernetes-dashboard-ingress
   namespace: kubernetes-dashboard
   annotations:
-    nginx.org/ssl-services: "ssl-svc"
+    nginx.org/ssl-services: "kubernetes-dashboard"
 spec:
   ingressClassName: nginx
   rules:
