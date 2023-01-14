@@ -202,7 +202,7 @@ spec:
             - containerPort: 9090
               protocol: TCP
           args:
-            #- --auto-generate-certificates
+            - --auto-generate-certificates
             - --namespace=kubernetes-dashboard
             - --enable-skip-login
             - --disable-settings-authorizer
@@ -220,12 +220,9 @@ spec:
               name: tmp-volume
           livenessProbe:
             httpGet:
-              # scheme: HTTPS
-              # path: /
-              # port: 8443
-              scheme: HTTP
+              scheme: HTTPS
               path: /
-              port: 9090
+              port: 8443
             initialDelaySeconds: 30
             timeoutSeconds: 30
           securityContext:
