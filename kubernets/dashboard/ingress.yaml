@@ -3,11 +3,13 @@ kind: Ingress
 metadata:
   name: kubernetes-dashboard-ingress
   namespace: kubernetes-dashboard
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   ingressClassName: nginx
   rules:
     - host: dashboard.internal.com
-      https:
+      http:
         paths:
           - pathType: Prefix
             backend:
