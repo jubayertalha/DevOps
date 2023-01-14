@@ -198,7 +198,7 @@ spec:
             - containerPort: 8443
               protocol: TCP
           args:
-            #- --auto-generate-certificates
+            - --auto-generate-certificates
             - --namespace=kubernetes-dashboard
             - --enable-skip-login
             - --disable-settings-authorizer
