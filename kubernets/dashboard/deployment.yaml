@@ -38,7 +38,9 @@ metadata:
   namespace: kubernetes-dashboard
 spec:
   ports:
-    - port: 443
+    # - port: 443
+    #   targetPort: 8443
+    - port: 80
       targetPort: 8443
   selector:
     k8s-app: kubernetes-dashboard
@@ -214,7 +216,10 @@ spec:
               name: tmp-volume
           livenessProbe:
             httpGet:
-              scheme: HTTPS
+              # scheme: HTTPS
+              # path: /
+              # port: 8443
+              scheme: HTTP
               path: /
               port: 8443
             initialDelaySeconds: 30
