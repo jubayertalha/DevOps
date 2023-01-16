@@ -6,7 +6,6 @@ dashboard:
 scraper:
   image: kubernetesui/metrics-scraper
   tag: v1.0.8
-  pullPolicy: Always
 
 ingress:
   host: dashboard
