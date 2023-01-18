@@ -58,3 +58,22 @@ ingress:
   class: nginx
   path: /
   pathType: Prefix
+
+secret:
+  name: storage-secret
+  type: Opaque
+  azurestorageaccountname: myblob221
+  azurestorageaccountkey: "G/a0XHwQ2uU59PqWVmWLIJfjZnhnJDYDBR7p0tFxpCI9PyGBrgSJQ33MGalVHvamSKJO7IN5U1uL+AStKt2drQ=="
+
+volume:
+  name: ec-pv
+  storage: 10Gi
+  accessModes: ReadWriteMany
+  reclaimPolicy: Retain
+  handle: ecpv221
+  containerName: eccontainer
+
+pvc:
+  name: ec-pvc
+  accessModes: ReadWriteMany
+  storage: 10Gi

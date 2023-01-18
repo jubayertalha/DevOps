@@ -49,6 +49,10 @@ spec:
         - name: data
           mountPath: /usr/share/elasticsearch/data
       volumes:
+      # - name: data
+      #   hostPath:
+      #     path: /usr/share/elasticsearch/data
       - name: data
-        hostPath:
-          path: /usr/share/elasticsearch/data
+        persistentVolumeClaim:
+          claimName: {{ .Values.pvc.name }}
+        
