@@ -32,9 +32,9 @@ spec:
           value: "single-node"
         - name: "ES_JAVA_OPTS"
           value: "-Xms750m -Xmx750m"
-        # volumeMounts:
-        # - name: data
-        #   mountPath: /usr/share/elasticsearch/data
+        volumeMounts:
+        - name: data
+          mountPath: /usr/share/elasticsearch/data
       initContainers:
       - image: alpine:3.6
         name: elastic-init-sysctl
