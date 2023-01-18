@@ -35,7 +35,6 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /usr/share/elasticsearch/data
-          readOnly: false
       initContainers:
       - image: alpine:3.6
         name: elastic-init-sysctl
@@ -45,4 +44,4 @@ spec:
       volumes:
       - name: data
         hostPath:
-          path: /data/elasticsearch
+          path: /usr/share/elasticsearch/data
