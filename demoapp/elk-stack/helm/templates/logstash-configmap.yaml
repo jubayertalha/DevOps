@@ -13,6 +13,9 @@ data:
         if [fields][log-source] == "logfile" {
             grok {
                 match => { "message" => "{\"log.level\":\"%{WORD:log.level}\",%{GREEDYDATA:log.other1},\"message\":\"%{GREEDYDATA:log.message}\",%{GREEDYDATA:log.other0},\"ecs.version\":\"%{GREEDYDATA:log.ecs.version}\"}" }
+                add_field => { "log.level" => "%{log.level}" }
+                add_field => { "log.message" => "%{log.message}" }
+                add_field => { "log.ecs.version" => "%{log.ecs.version}" }
             }
         #     mutate {
         #         add_field => { "tmp_path" => "%{[log][file][path]}" }
