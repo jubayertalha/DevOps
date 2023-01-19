@@ -75,5 +75,5 @@ volume:
 
 pvc:
   name: ec-pvc
-  accessModes: ReadWriteMany
+  accessModes: ReadWriteOnce
   storage: 10Gi
