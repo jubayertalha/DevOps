@@ -68,7 +68,7 @@ secret:
 volume:
   name: ec-pv
   storage: 10Gi
-  accessModes: ReadWriteMany
+  accessModes: ReadWriteOnce
   reclaimPolicy: Retain
   handle: "/subscriptions/863fda5d-6174-4448-8f7b-f8b0f9008431/resourcegroups/MC_aks-rg_aks-poc_eastus/providers/Microsoft.Compute/disks/mydisk221"
   containerName: eccontainer
