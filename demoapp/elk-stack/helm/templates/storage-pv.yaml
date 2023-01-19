@@ -9,9 +9,9 @@ spec:
     - {{.Values.volume.accessModes}}
   persistentVolumeReclaimPolicy: {{.Values.volume.reclaimPolicy}}
   storageClassName: managed-csi
-#   mountOptions:
-#     - -o allow_other
-#     - --file-cache-timeout-in-seconds=120
+  mountOptions:
+    - -o allow_other
+    - --file-cache-timeout-in-seconds=120
   csi:
     driver: disk.csi.azure.com
     readOnly: false
