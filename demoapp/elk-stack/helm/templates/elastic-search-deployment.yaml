@@ -34,7 +34,7 @@ spec:
           value: "-Xms750m -Xmx750m"
         volumeMounts:
         - name: data
-          mountPath: /usr/share/elasticsearch/data/indices
+          mountPath: /usr/share/elasticsearch/data
       initContainers:
       - image: alpine:3.6
         name: elastic-init-sysctl
@@ -47,7 +47,7 @@ spec:
           privileged: true
         volumeMounts:
         - name: data
-          mountPath: /usr/share/elasticsearch/data/indices
+          mountPath: /usr/share/elasticsearch/data
       volumes:
       # - name: data
       #   hostPath:
