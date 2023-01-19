@@ -142,6 +142,7 @@ PASSWORD=$(az ad sp create-for-rbac \
   http://17.2.1.6/sample/index?name=Demo
 
   az aks update --enable-blob-driver -n aks-poc -g aks-rg
+  az aks update --enable-disk-driver -n aks-poc -g aks-rg
 
   kubectl exec -it nginx-blob -- df -h
 
