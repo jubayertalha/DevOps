@@ -8,16 +8,17 @@ spec:
   accessModes:
     - {{.Values.volume.accessModes}}
   persistentVolumeReclaimPolicy: {{.Values.volume.reclaimPolicy}}
-  storageClassName: azureblob-fuse-premium
-  mountOptions:
-    - -o allow_other
-    - --file-cache-timeout-in-seconds=120
+  storageClassName: managed-csi
+#   mountOptions:
+#     - -o allow_other
+#     - --file-cache-timeout-in-seconds=120
   csi:
-    driver: blob.csi.azure.com
+    driver: disk.csi.azure.com
     readOnly: false
     volumeHandle: {{.Values.volume.handle}}
     volumeAttributes:
-      containerName: {{.Values.volume.containerName}}
-    nodeStageSecretRef:
-      name: {{.Values.secret.name}}
-      namespace: default
+    #   containerName: {{.Values.volume.containerName}}
+      fsType: ext4
+    # nodeStageSecretRef:
+    #   name: {{.Values.secret.name}}
+    #   namespace: default
