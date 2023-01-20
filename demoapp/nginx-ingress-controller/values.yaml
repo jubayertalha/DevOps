@@ -1,0 +1,25 @@
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: ""
+
+ingress:
+  class: nginx
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+service:
+  type: LoadBalancer
+  port: 80
+  annotations: {
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true",
+    service.beta.kubernetes.io/azure-pls-create: "true",
+    azure-load-balancer-health-probe-request-path: "/healthz"
+  }
