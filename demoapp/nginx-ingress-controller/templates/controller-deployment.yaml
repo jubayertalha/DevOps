@@ -31,7 +31,7 @@ spec:
                 command:
                   - /wait-shutdown
           args:
-            - /{{ include "nginx-ingress-controller.fullname" . }}-controller
+            - /nginx-ingress-controller
             - --publish-service=$(POD_NAMESPACE)/{{ include "nginx-ingress-controller.fullname" . }}-controller
             - --election-id=ingress-controller-leader
             - --ingress-class={{ .Values.ingress.class }}
