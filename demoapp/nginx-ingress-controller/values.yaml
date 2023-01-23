@@ -7,12 +7,12 @@ controller:
 admission:
   create:
     image:
-      repository: rpkatz/kube-webhook-certgen:v1.5.2
+      repository: rpkatz/kube-webhook-certgen
       pullPolicy: IfNotPresent
       tag: "v1.5.2"
   patch:
     image:
-      repository: rpkatz/kube-webhook-certgen:v1.5.2
+      repository: rpkatz/kube-webhook-certgen
       pullPolicy: IfNotPresent
       tag: "v1.5.2"
 
