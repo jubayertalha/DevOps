@@ -7,14 +7,14 @@ controller:
 admission:
   create:
     image:
-      repository: docker.io/jettech/kube-webhook-certgen
+      repository: rpkatz/kube-webhook-certgen:v1.5.2
       pullPolicy: IfNotPresent
-      tag: "v1.5.1"
+      tag: "v1.5.2"
   patch:
     image:
-      repository: docker.io/jettech/kube-webhook-certgen
+      repository: rpkatz/kube-webhook-certgen:v1.5.2
       pullPolicy: IfNotPresent
-      tag: "v1.5.1"
+      tag: "v1.5.2"
 
 ingress:
   class: nginx
