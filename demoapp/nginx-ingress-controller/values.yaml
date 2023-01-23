@@ -1,20 +1,38 @@
+# controller:
+#   image:
+#     repository: nginx/nginx-ingress
+#     pullPolicy: IfNotPresent
+#     tag: "latest"
+
 controller:
   image:
-    repository: nginx/nginx-ingress
+    repository: registry.k8s.io/ingress-nginx/controller
     pullPolicy: IfNotPresent
-    tag: "latest"
+    tag: "v1.3.1@sha256:54f7fe2c6c5a9db9a0ebf1131797109bb7a4d91f56b9b362bde2abd237dd1974"
+
+# admission:
+#   create:
+#     image:
+#       repository: rpkatz/kube-webhook-certgen
+#       pullPolicy: IfNotPresent
+#       tag: "v1.5.2"
+#   patch:
+#     image:
+#       repository: rpkatz/kube-webhook-certgen
+#       pullPolicy: IfNotPresent
+#       tag: "v1.5.2"
 
 admission:
   create:
     image:
-      repository: rpkatz/kube-webhook-certgen
+      repository: registry.k8s.io/ingress-nginx/kube-webhook-certgen
       pullPolicy: IfNotPresent
-      tag: "v1.5.2"
+      tag: "v1.3.0@sha256:549e71a6ca248c5abd51cdb73dbc3083df62cf92ed5e6147c780e30f7e007a47"
   patch:
     image:
-      repository: rpkatz/kube-webhook-certgen
+      repository: registry.k8s.io/ingress-nginx/kube-webhook-certgen
       pullPolicy: IfNotPresent
-      tag: "v1.5.2"
+      tag: "v1.3.0@sha256:549e71a6ca248c5abd51cdb73dbc3083df62cf92ed5e6147c780e30f7e007a47"
 
 ingress:
   class: nginx
