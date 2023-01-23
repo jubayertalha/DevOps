@@ -4,20 +4,23 @@ metadata:
   name: {{ include "nginx-ingress-controller.fullname" . }}-controller
   labels:
     {{- include "nginx-ingress-controller.labels" . | nindent 4 }}
+    app.kubernetes.io/component: controller
 spec:
   selector:
     matchLabels:
       {{- include "nginx-ingress-controller.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: controller
   template:
     metadata:
       labels:
         {{- include "nginx-ingress-controller.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: controller
     spec:
       dnsPolicy: ClusterFirst
       serviceAccountName: {{ include "nginx-ingress-controller.serviceAccountName" . }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.controller.image.repository }}:{{ .Values.controller.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           lifecycle:
             preStop:

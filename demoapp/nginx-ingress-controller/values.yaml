@@ -1,23 +1,29 @@
-image:
-  repository: nginx
-  pullPolicy: IfNotPresent
-  tag: ""
+controller:
+  image:
+    repository: nginx/nginx-ingress
+    pullPolicy: IfNotPresent
+    tag: "latest"
+
+admission:
+  create:
+    image:
+      repository: docker.io/jettech/kube-webhook-certgen
+      pullPolicy: IfNotPresent
+      tag: "v1.5.1"
+  patch:
+    image:
+      repository: docker.io/jettech/kube-webhook-certgen
+      pullPolicy: IfNotPresent
+      tag: "v1.5.1"
 
 ingress:
   class: nginx
 
 serviceAccount:
-  # Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
 
 service:
   type: LoadBalancer
-  port: 80
   annotations: {
     service.beta.kubernetes.io/azure-load-balancer-internal: "true",
     service.beta.kubernetes.io/azure-pls-create: "true",
