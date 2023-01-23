@@ -25,11 +25,11 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.controller.image.repository }}:{{ .Values.controller.image.tag }}"
           imagePullPolicy: {{ .Values.controller.image.pullPolicy }}
-          lifecycle:
-            preStop:
-              exec:
-                command:
-                  - /wait-shutdown
+          # lifecycle:
+          #   preStop:
+          #     exec:
+          #       command:
+          #         - /wait-shutdown
           args:
             - /{{ include "nginx-ingress-controller.fullname" . }}-controller
             - --publish-service=$(POD_NAMESPACE)/{{ include "nginx-ingress-controller.fullname" . }}-controller

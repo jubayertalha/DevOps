@@ -12,7 +12,8 @@ webhooks:
       - apiGroups:
           - networking.k8s.io
         apiVersions:
-          - v1beta1
+          # - v1beta1
+          - v1
         operations:
           - CREATE
           - UPDATE
@@ -22,9 +23,10 @@ webhooks:
     sideEffects: None
     admissionReviewVersions:
       - v1
-      - v1beta1
+      # - v1beta1
     clientConfig:
       service:
         namespace: {{ .Release.Namespace }}
         name: {{ include "nginx-ingress-controller.fullname" . }}-controller-admission
-        path: /networking/v1beta1/ingresses
+        # path: /networking/v1beta1/ingresses
+        path: /networking/v1/ingresses
