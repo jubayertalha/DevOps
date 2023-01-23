@@ -22,7 +22,7 @@ spec:
       dnsPolicy: ClusterFirst
       serviceAccountName: {{ include "nginx-ingress-controller.serviceAccountName" . }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: controller
           image: "{{ .Values.controller.image.repository }}:{{ .Values.controller.image.tag }}"
           imagePullPolicy: {{ .Values.controller.image.pullPolicy }}
           # lifecycle:

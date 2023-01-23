@@ -3,4 +3,4 @@ kind: IngressClass
 metadata:
   name: {{ .Values.ingressClass | default "nginx" }}
 spec:
-  controller: nginx.org/ingress-controller
+  controller: k8s.io/ingress-nginx
