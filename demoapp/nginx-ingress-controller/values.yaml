@@ -1,8 +1,8 @@
 controller:
   image:
-    repository: nginx/nginx-ingress
+    repository: k8s.gcr.io/ingress-nginx/controller
     pullPolicy: IfNotPresent
-    tag: "latest"
+    tag: "v0.44.0"
 
 admission:
   create:
