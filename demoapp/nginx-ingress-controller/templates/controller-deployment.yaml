@@ -5,16 +5,19 @@ metadata:
   labels:
     {{- include "nginx-ingress-controller.labels" . | nindent 4 }}
     app.kubernetes.io/component: controller
+    app: {{ include "nginx-ingress-controller.fullname" . }}-controller
 spec:
   selector:
     matchLabels:
       {{- include "nginx-ingress-controller.selectorLabels" . | nindent 6 }}
       app.kubernetes.io/component: controller
+      app: {{ include "nginx-ingress-controller.fullname" . }}-controller
   template:
     metadata:
       labels:
         {{- include "nginx-ingress-controller.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: controller
+        app: {{ include "nginx-ingress-controller.fullname" . }}-controller
     spec:
       dnsPolicy: ClusterFirst
       serviceAccountName: {{ include "nginx-ingress-controller.serviceAccountName" . }}
