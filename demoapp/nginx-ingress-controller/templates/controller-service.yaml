@@ -21,6 +21,6 @@ spec:
       protocol: TCP
       targetPort: https
   selector:
-    {{- include "nginx-ingress-controller.selectorLabels" . | nindent 4 }}
-    app.kubernetes.io/component: controller
+    # {{- include "nginx-ingress-controller.selectorLabels" . | nindent 4 }}
+    # app.kubernetes.io/component: controller
     app: {{ include "nginx-ingress-controller.fullname" . }}-controller
