@@ -4,6 +4,9 @@ metadata:
   labels:
     k8s-app: kubernetes-dashboard
   name: kubernetes-dashboard
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+    service.beta.kubernetes.io/azure-pls-create: "true"
 #   namespace: kubernetes-dashboard
 spec:
   ports:
