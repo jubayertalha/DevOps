@@ -27,10 +27,24 @@ spec:
           value: {{ .Values.env.READ_UNCOMMITTED_JDBC_CONNECTION.value }}
         - name: {{ .Values.env.REPORTING_JDBC_CONNECTION.name }}
           value: {{ .Values.env.REPORTING_JDBC_CONNECTION.value }}
-      #   volumeMounts:
+        - name: SECRET_VaultName
+          valueFrom:
+            secretKeyRef:
+              name: ksec
+              key: test 
+        volumeMounts:
+        - name: secrets-store01-inline
+          mountPath: "/mnt/secrets-store"
+          readOnly: true
       #   - name: {{ .Values.mount.name }}
       #     mountPath: {{ .Values.mount.path }}
-      # volumes:
+      volumes:
       #   - name: {{ .Values.mount.name }}
       #     persistentVolumeClaim:
       #       claimName: {{ .Values.pvc.name }}
+        - name: secrets-store01-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "azure-kvname-system-msi"
