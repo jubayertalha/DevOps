@@ -4,6 +4,10 @@ metadata:
   name: {{ .Values.ingress.name }}
 spec:
   ingressClassName: {{ .Values.ingress.class }}
+  tls:
+  - hosts:
+    - {{ .Values.ingress.host | indent 2 }}.internal.com
+    secretName: selfca-ingress-tls
   rules:
     - host: {{ .Values.ingress.host | indent 2 }}.internal.com
       http:
