@@ -143,6 +143,10 @@ PASSWORD=$(az ad sp create-for-rbac \
 
   az aks update --enable-blob-driver -n aks-poc -g aks-rg
   az aks update --enable-disk-driver -n aks-poc -g aks-rg
+  az aks enable-addons --addons azure-keyvault-secrets-provider -n aks-poc -g aks-rg
+
+  az keyvault secret set --vault-name myvault221 -n testSec --value testing
+
 
   kubectl exec -it nginx-blob -- df -h
 
