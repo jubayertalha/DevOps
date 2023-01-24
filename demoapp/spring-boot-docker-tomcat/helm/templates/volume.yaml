@@ -1,23 +1,23 @@
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: {{.Values.volume.name}}
-spec:
-  capacity:
-    storage: {{.Values.volume.storage}}
-  accessModes:
-    - {{.Values.volume.accessModes}}
-  persistentVolumeReclaimPolicy: {{.Values.volume.reclaimPolicy}}
-  storageClassName: azureblob-fuse-premium
-  mountOptions:
-    - -o allow_other
-    - --file-cache-timeout-in-seconds=120
-  csi:
-    driver: blob.csi.azure.com
-    readOnly: false
-    volumeHandle: {{.Values.volume.handle}}
-    volumeAttributes:
-      containerName: {{.Values.volume.containerName}}
-    nodeStageSecretRef:
-      name: {{.Values.secret.name}}
-      namespace: default
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: {{.Values.volume.name}}
+# spec:
+#   capacity:
+#     storage: {{.Values.volume.storage}}
+#   accessModes:
+#     - {{.Values.volume.accessModes}}
+#   persistentVolumeReclaimPolicy: {{.Values.volume.reclaimPolicy}}
+#   storageClassName: azureblob-fuse-premium
+#   mountOptions:
+#     - -o allow_other
+#     - --file-cache-timeout-in-seconds=120
+#   csi:
+#     driver: blob.csi.azure.com
+#     readOnly: false
+#     volumeHandle: {{.Values.volume.handle}}
+#     volumeAttributes:
+#       containerName: {{.Values.volume.containerName}}
+#     nodeStageSecretRef:
+#       name: {{.Values.secret.name}}
+#       namespace: default
