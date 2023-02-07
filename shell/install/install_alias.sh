@@ -1,0 +1,1 @@
+cat alias.sh >> ~/.bashr_aliases
