@@ -1,2 +1,2 @@
-cat alias.sh >> ~/.bashr_aliases
+cat alias.sh >> ~/.bash_aliases
 source ~/.bash_aliases
