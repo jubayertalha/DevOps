@@ -19,7 +19,6 @@ spec:
       {{- end }}
       labels:
         {{- include "ignite.selectorLabels" . | nindent 8 }}
-        app: {{ include "ignite.fullname" . }}
     spec:
       terminationGracePeriodSeconds: 60000
       {{- with .Values.imagePullSecrets }}
@@ -59,7 +58,6 @@ spec:
             - containerPort: 47500 # discovery SPI port
             - containerPort: 49112 # dafault JMX port
             - containerPort: 10800 # thin clients/JDBC driver port
-            - containerPort: 8080  # REST API
           volumeMounts:
             - mountPath: /var/ignite/config
               name: {{ include "ignite.fullname" . }}-config-vol

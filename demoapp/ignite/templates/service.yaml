@@ -3,12 +3,9 @@ kind: Service
 metadata:
   name: {{ include "ignite.fullname" . }}
   labels:
-    app: {{ include "ignite.fullname" . }}
-  annotations:
-    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
-    service.beta.kubernetes.io/azure-pls-create: "true"
+    {{- include "ignite.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  clusterIP: None
   ports:
     - name: jdbc
       port: 11211
@@ -25,8 +22,5 @@ spec:
     - name: sql
       port: 10800
       targetPort: 10800
-    - name: rest
-      port: 80
-      targetPort: 8080
   selector:
-    app: {{ include "ignite.fullname" . }}
+    {{- include "ignite.selectorLabels" . | nindent 6 }}
