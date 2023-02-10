@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<!--
+    Ignite Spring configuration file to startup Ignite cache.
+
+    This file demonstrates how to configure cache using Spring. Provided cache
+    will be created on node startup.
+
+    Use this configuration file when running HTTP REST examples (see 'examples/rest' folder).
+
+    When starting a standalone node, you need to execute the following command:
+    {IGNITE_HOME}/bin/ignite.{bat|sh} examples/config/example-cache.xml
+
+    When starting Ignite from Java IDE, pass path to this file to Ignition:
+    Ignition.start("examples/config/example-cache.xml");
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="ignite.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
+        <property name="authenticationEnabled" value="true"/>
+        <property name="workDirectory" value="/var/ignite/data"/>
+        <property name="cacheConfiguration">
+                <list>
+                    <!-- Customer Search Control Cache -->
+                    <bean class="org.apache.ignite.configuration.CacheConfiguration">
+                        <property name="name" value="customerSearch"/>
+                        <property name="atomicityMode" value="ATOMIC"/>
+                        <property name="backups" value="1"/>
+                        <property name="cacheMode" value="REPLICATED" />
+                        <property name="partitionLossPolicy" value="READ_ONLY_SAFE"/>
+                    </bean>
+            </list>
+        </property>
+
+        <property name="segmentationPolicy" value="RESTART_JVM" /> 
+        
+        <property name="clientConnectorConfiguration"> 
+            <bean class="org.apache.ignite.configuration.ClientConnectorConfiguration">
+                <!-- Uncomment to enable SSL/TLS for Connections -->
+                <!-- <property name="sslEnabled" value="true"/> -->
+            </bean> 
+        </property>
+
+        <!--Native Storage Configration. -->
+        <property name="dataStorageConfiguration">
+            <bean class="org.apache.ignite.configuration.DataStorageConfiguration">
+                <property name="defaultDataRegionConfiguration">
+                    <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+                        <property name="persistenceEnabled" value="true"/>
+                        <!-- Initial size is 1GB. -->
+                        <property name="initialSize" value="#{1024L * 1024 * 1024}"/>
+                        <!-- Maximum size is 5 GB MB. -->
+                        <property name="maxSize" value="#{1024L * 1024 * 1024 * 5}"/>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+
+        <!-- Uncomment to enable SSL/TLS for Connections -->
+        <!-- Set the keystore paths and passwords here. -->
+        <!-- TLSv1.2 is the highest level that Ignite 2.9.1 can support. -->
+        <!-- <property name="sslContextFactory">
+            <bean class="org.apache.ignite.ssl.SslContextFactory">
+                <property name="keyStoreFilePath" value="Path/to/keystore"/>
+                <property name="keyStorePassword" value="keystore_password"/>
+                <property name="trustStoreFilePath" value="Path/to/truststore"/>
+                <property name="trustStorePassword" value="truststore_password"/>
+                <property name="protocol" value="TLSv1.2"/>
+            </bean>
+        </property> -->
+
+        <!-- Logging -->
+        <property name="gridLogger">
+            <bean class="org.apache.ignite.logger.log4j2.Log4J2Logger">
+                <!-- log4j2 configuration file -->
+                <constructor-arg type="java.lang.String" value="/var/ignite/config/log4j2-config.xml"/>
+            </bean>
+        </property>

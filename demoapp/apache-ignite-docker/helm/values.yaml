@@ -2,8 +2,8 @@ deployment:
   name: ignite-deployment
   app: ignite
   replicas: 1
-  image: myacr221.azurecr.io/ignite
-  tag: v1.0
+  image: apacheignite/ignite
+  tag: latest
   containerPort: 8080
   pullPolicy: Always
 

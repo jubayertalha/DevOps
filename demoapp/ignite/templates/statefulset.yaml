@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "ignite.fullname" . }}
+  labels:
+    {{- include "ignite.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  serviceName: {{ include "ignite.fullname" . }}
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      {{- include "ignite.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "ignite.selectorLabels" . | nindent 8 }}
+        app: {{ include "ignite.fullname" . }}
+    spec:
+      terminationGracePeriodSeconds: 60000
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "ignite.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - name: {{ include "ignite.fullname" . }}-config-vol
+          configMap:
+            name: {{ include "ignite.fullname" . }}-config
+        {{- if .Values.global.local.enabled }}
+        - name:  {{ include "ignite.fullname" . }}-data
+          hostPath:
+            path: "/run/desktop/mnt/host/c{{ .Values.global.local.basePath }}/ignite-data"
+        {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: OPTION_LIBS
+              value: ignite-log4j2,ignite-kubernetes,ignite-rest-http
+            - name: CONFIG_URI
+              value: file:///var/ignite/config/ignite-config.xml
+            - name: IGNITE_QUIET
+              value: "false"
+            - name: JVM_OPTS
+              value: "-Djava.net.preferIPv4Stack=true"
+          ports:
+            - containerPort: 11211 # JDBC port number.
+            - containerPort: 47100 # communication SPI port
+            - containerPort: 47500 # discovery SPI port
+            - containerPort: 49112 # dafault JMX port
+            - containerPort: 10800 # thin clients/JDBC driver port
+            - containerPort: 8080  # REST API
+          volumeMounts:
+            - mountPath: /var/ignite/config
+              name: {{ include "ignite.fullname" . }}-config-vol
+            {{- if .Values.global.local.enabled }}
+            - name:  {{ include "ignite.fullname" . }}-data
+              mountPath: /var/ignite/data
+            {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
