@@ -44,8 +44,8 @@ spec:
               mountPath: /opt/geoserver_data
       volumes:
         - name: {{ include "geo-server.fullname" . }}-data
-          hostPath:
-            path: /var/{{ include "geo-server.fullname" . }}-data
+          persistentVolumeClaim:
+            claimName: {{ include "geo-server.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

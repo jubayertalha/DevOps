@@ -58,6 +58,10 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
+volume:
+  storage: 25Gi
+  accessModes: ReadWriteMany
+
 autoscaling:
   enabled: false
   minReplicas: 1
