@@ -1,7 +1,5 @@
 #!/bin/bash
 
-alreadyexists=false
-
 while [[ $# -gt 0 ]]; do
   key="$1"
 
@@ -33,7 +31,9 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-if [ "$student" = true ]; then
+alreadyexists=false
+
+if [ "$alreadyexists" = true ]; then
   echo "Container $containername does not exist"
   echo "Creating container in $accountname"
   echo "Account Name: $accountname Container Name: $containername Account Key: $accountkey"
