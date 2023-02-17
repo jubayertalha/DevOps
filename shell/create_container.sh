@@ -31,7 +31,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-alreadyexists=false
+alreadyexists=true
 
 if [ "$alreadyexists" = true ]; then
   echo "Container $containername does not exist"
