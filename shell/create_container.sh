@@ -31,15 +31,25 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-alreadyexists=true
+alreadyexists=$(az storage container exists --name $containername --account-name $accountname --account-key $accountkey --output tsv --query exists)
 
-if [ "$alreadyexists" = true ]; then
+if [ "$alreadyexists" = false ]; then
   echo "Container $containername does not exist"
   echo "Creating container in $accountname"
-  echo "Account Name: $accountname Container Name: $containername Account Key: $accountkey"
+  created=$(az storage container create --name $containername --account-name $accountname --account-key $accountkey --output tsv --query created)
+  if [ "$created" = false ]; then
+    echo "Container $containername creation failed"
+    exit 1
+  fi
   echo "Container $containername created"
   echo "Uploading files to $containername from $folderpath"
-  echo "Uploading files to $containername complete"
+  az storage blob upload-batch --destination $containername --source $folderpath --account-name $accountname --account-key $accountkey
+  status=$(echo $?)
+  if [ $status -eq 0 ] then
+    echo "Uploading files to $containername complete"
+  else
+    echo "Uploading files to $containername failed"
+  fi
 else
   echo "Container $containername already exists"
   echo "Skipping container creation"
