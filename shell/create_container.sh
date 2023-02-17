@@ -45,7 +45,7 @@ if [ "$alreadyexists" = false ]; then
   echo "Uploading files to $containername from $folderpath"
   az storage blob upload-batch --destination $containername --source $folderpath --account-name $accountname --account-key $accountkey
   status=$(echo $?)
-  if [ $status -eq 0 ] then
+  if [ $status -eq 0 ]; then
     echo "Uploading files to $containername complete"
   else
     echo "Uploading files to $containername failed"
