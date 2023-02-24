@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: azure-storage-secret
+  name: azure-storage-secret-file
 type: Opaque
 stringData:
   azurestorageaccountname: myblob22
@@ -10,7 +10,7 @@ stringData:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: azurefile
+  name: azurefile-share
 spec:
   capacity:
     storage: 5Gi
@@ -26,7 +26,7 @@ spec:
       resourceGroup: aks-rg
       shareName: xml-views
     nodeStageSecretRef:
-      name: azure-storage-secret
+      name: azure-storage-secret-file
       namespace: default
   mountOptions:
     - dir_mode=0777
@@ -41,12 +41,12 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: azurefile
+  name: azurefile-share
 spec:
   accessModes:
     - ReadWriteMany
   storageClassName: azurefile-csi
-  volumeName: azurefile
+  volumeName: azurefile-share
   resources:
     requests:
       storage: 5Gi
@@ -65,4 +65,4 @@ spec:
   volumes:
     - name: mount-share
       persistentVolumeClaim:
-        claimName: azurefile
+        claimName: azurefile-share
