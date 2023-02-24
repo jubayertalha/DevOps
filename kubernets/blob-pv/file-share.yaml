@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: azure-storage-secret
+type: Opaque
+stringData:
+  azurestorageaccountname: myblob221
+  azurestorageaccountkey: 14beg69qbnni/k5arTwzVaqS8B28FcpofmHX89lPf3jUj/jXo4nDM2BMeLHBisqFe9o2pCFq4zEp+AStvT8KWw==
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: azurefile
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: azurefile-csi
+  csi:
+    driver: file.csi.azure.com
+    readOnly: false
+    volumeHandle: azurefile-xml-views
+    volumeAttributes:
+      resourceGroup: aks-rg
+      shareName: xml-views
+    nodeStageSecretRef:
+      name: azure-storage-secret
+      namespace: default
+  mountOptions:
+    - dir_mode=0777
+    - file_mode=0777
+    - uid=0
+    - gid=0
+    - mfsymlinks
+    - cache=strict
+    - nosharesock
+    - nobrl
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: azurefile
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: azurefile-csi
+  volumeName: azurefile
+  resources:
+    requests:
+      storage: 5Gi
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nginx-share
+spec:
+  containers:
+    - image: mcr.microsoft.com/oss/nginx/nginx:1.17.3-alpine
+      name: nginx-share
+      volumeMounts:
+        - name: mount-share
+          mountPath: "/mnt/file"
+  volumes:
+    - name: mount-share
+      persistentVolumeClaim:
+        claimName: azurefile
