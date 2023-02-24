@@ -4,7 +4,7 @@ metadata:
   name: azure-storage-secret
 type: Opaque
 stringData:
-  azurestorageaccountname: myblob221
+  azurestorageaccountname: myblob22
   azurestorageaccountkey: 14beg69qbnni/k5arTwzVaqS8B28FcpofmHX89lPf3jUj/jXo4nDM2BMeLHBisqFe9o2pCFq4zEp+AStvT8KWw==
 ---
 apiVersion: v1
