@@ -7,8 +7,8 @@ swapoff -a
 # add port
 systemctl start firewalld
 systemctl enable firewalld
-firewall-cmd --add-port={6443,2379-2380,30000-32767,10250,10251,10252,5473}/tcp --permanent
-firewall-cmd --add-port={4789,8285,8472}/udp --permanent
+firewall-cmd --add-port={6443,6783,2379-2380,30000-32767,10250,10251,10252,5473}/tcp --permanent
+firewall-cmd --add-port={4789,6783,6784,8285,8472}/udp --permanent
 firewall-cmd --reload
 
 # install containerd
