@@ -1,0 +1,9 @@
+[master]
+vl-rafat-01
+
+[workers]
+vl-rafat-02
+vl-rafat-03
+
+[all:vars]
+ansible_user=root
