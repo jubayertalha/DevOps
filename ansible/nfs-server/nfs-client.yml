@@ -1,5 +1,5 @@
 ---
-- hosts: nfs-clients
+- hosts: workers
   become: yes
   tasks:
     - name: install nfs-utils
