@@ -12,5 +12,6 @@
         owner: root
         group: root
         mode: '0644'
+        
     - name: Mount volumn
       shell: sudo mount kmaster:/mnt/test /mnt/test

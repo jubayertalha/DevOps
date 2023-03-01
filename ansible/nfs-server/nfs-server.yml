@@ -27,12 +27,12 @@
       firewalld:
         permanent: yes
         immediate: yes
-        ervice: "{{ item }}"
+        service: "{{ item }}"
         state: enabled
       with_items:
         - mountd
         - rpc-bind
-        
+
     - name: relode firewalld
       command: firewall-cmd --reload
 
