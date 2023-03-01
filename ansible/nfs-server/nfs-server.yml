@@ -1,5 +1,5 @@
 ---
-- hosts: master
+- hosts: all
   become: yes
   tasks:
     - name: install nfs-utils
@@ -13,6 +13,9 @@
         group: root
         mode: '0644'
 
+- hosts: master
+  become: yes
+  tasks:
     - name: enable rpcbind nfslock nfs
       service:
         name: "{{ item }}"
@@ -43,7 +46,7 @@
     - name: relode firewalld
       command: firewall-cmd --reload
 
-    - name: Copy exports file.
+    - name: copy exports file
       template:
         src: ./exports.j2
         dest: /etc/exports
@@ -53,3 +56,9 @@
 
     - name: NFS apply change configrue
       shell: systemctl reload nfs;exportfs -a
+
+- hosts: workers
+  become: yes
+  tasks:
+    - name: mount volume
+      shell: sudo mount kmaster:/mnt/test /mnt/test
