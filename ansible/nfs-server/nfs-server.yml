@@ -12,14 +12,30 @@
         owner: root
         group: root
         mode: '0644'
+
     - name: enable rpcbind nfslock nfs
       service:
         name: "{{ item }}"
         enabled: yes
+        state: started
       with_items:
         - rpcbind
         - nfslock
         - nfs
+
+    - name: open ports
+      firewalld:
+        permanent: yes
+        immediate: yes
+        ervice: "{{ item }}"
+        state: enabled
+      with_items:
+        - mountd
+        - rpc-bind
+        
+    - name: relode firewalld
+      command: firewall-cmd --reload
+
     - name: Copy exports file.
       template:
         src: ./exports.j2
@@ -27,5 +43,6 @@
         owner: root
         group: root
         mode: 0644
+
     - name: NFS apply change configrue
       shell: systemctl reload nfs;exportfs -a
