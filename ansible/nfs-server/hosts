@@ -1,0 +1,9 @@
+[master]
+kmaster
+
+[workers]
+kworker1
+kworker2
+
+[all:vars]
+ansible_user=azureuser
