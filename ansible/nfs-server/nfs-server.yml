@@ -23,6 +23,12 @@
         - nfslock
         - nfs
 
+    - name: start firewalld
+      service:
+        name: firewalld
+        enabled: yes
+        state: started
+        
     - name: open ports
       firewalld:
         permanent: yes
