@@ -28,7 +28,7 @@
         name: firewalld
         enabled: yes
         state: started
-        
+
     - name: open ports
       firewalld:
         permanent: yes
@@ -38,6 +38,7 @@
       with_items:
         - mountd
         - rpc-bind
+        - nfs
 
     - name: relode firewalld
       command: firewall-cmd --reload
