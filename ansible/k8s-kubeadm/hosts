@@ -1,9 +1,9 @@
 [master]
-vl-rafat-01
+kmaster
 
 [workers]
-vl-rafat-02
-vl-rafat-03
+kworker1
+kworker2
 
 [all:vars]
-ansible_user=root
+ansible_user=azureuser
