@@ -40,7 +40,7 @@ Location=$(az group list \
 az aks create \
   -g $AKS_RG \
   -n $AKS_NAME \
-  --kubernetes-version 1.23.12 \
+  --kubernetes-version 1.24.9 \
   --location $Location \
   --enable-managed-identity \
   --assign-identity $Identity \
@@ -56,7 +56,6 @@ az aks create \
   --service-cidr 10.1.0.0/16 \
   --dns-name-prefix akspoc \
   --dns-service-ip 10.1.0.10 \
-  --docker-bridge-address 172.17.0.1/16 \
   --enable-cluster-autoscaler \
   --max-count 2 \
   --min-count 1 \
