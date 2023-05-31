@@ -52,7 +52,4 @@ spec:
       - name: data
         hostPath:
           path: /mnt/share/elasticsearch/data
-      # - name: data
-      #   persistentVolumeClaim:
-      #     claimName: {{ .Values.pvc.name }}
         
