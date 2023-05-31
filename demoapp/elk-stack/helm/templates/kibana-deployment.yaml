@@ -33,3 +33,5 @@ spec:
             secretKeyRef:
               name: "elastic-credentials"
               key: "password"
+        - name: XPACK_SECURITY_ENABLED
+          value: "true"
