@@ -27,7 +27,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: "elastic-credentials"
-              key: "username"
+              key: "k-username"
         - name: "ELASTICSEARCH_PASSWORD"
           valueFrom:
             secretKeyRef:
