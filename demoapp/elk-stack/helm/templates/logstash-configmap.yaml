@@ -38,8 +38,6 @@ data:
         output {
         elasticsearch {
             hosts => ["elastic-search-service:80"]
-            user => "${ELASTICSEARCH_USERNAME}"
-            password => "${ELASTICSEARCH_PASSWORD}"
         }
         }
     logstash.yml: |
