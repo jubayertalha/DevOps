@@ -30,16 +30,6 @@ spec:
           value: "single-node"
         - name: "ES_JAVA_OPTS"
           value: "-Xms750m -Xmx750m"
-        - name: "ELASTIC_PASSWORD"
-          valueFrom:
-            secretKeyRef:
-              name: "elastic-credentials"
-              key: "password"
-        - name: "ELASTIC_USERNAME"
-          valueFrom:
-            secretKeyRef:
-              name: "elastic-credentials"
-              key: "elastic-username"
         volumeMounts:
         - name: data
           mountPath: /usr/share/elasticsearch/data
