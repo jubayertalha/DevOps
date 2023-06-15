@@ -52,21 +52,6 @@ kibana:
     name: kibana-service
     port: 80
     type: LoadBalancer
-
-fleet:
-  deployment:
-    name: fleet-deployment
-    app: elastic-agent
-    replicas: 1
-    image: docker.elastic.co/beats/elastic-agent
-    tag: 8.5.3
-    containerPort: 8220
-    pullPolicy: Always
-
-  service:
-    name: fleet-service
-    port: 80
-    type: LoadBalancer
   
 ingress:
   name: elk-ingress

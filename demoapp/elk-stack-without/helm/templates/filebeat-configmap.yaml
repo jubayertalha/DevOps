@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: filebeat-config
+data:
+  filebeat.yml: |-
+    # filebeat.inputs:
+    # - type: filestream
+    #   enable: true
+    #   id: my-filestream-id
+    #   paths:
+    #     - /mnt/blob/rabbit.log
+
+    # filebeat.autodiscover:
+    #   providers:
+    #     - type: kubernetes
+    #       hints.enabled: true
+    #       hints.default_config:
+    #         type: container
+    #         paths:
+    #           - /var/log/containers/*-${data.container.id}.log
+
+    # filebeat.autodiscover:
+    #   providers:
+    #     - type: kubernetes
+    #       templates:
+    #         - condition:
+    #             equals:
+    #               kubernetes.container.name : frontend 
+    #           config:
+    #             - type: container
+    #               paths:
+    #                 - /var/log/containers/*-${data.kubernetes.container.id}.log
+    #               exclude_lines: ["^\\s+[\\-`('.|_]"]  # drop asciiart lines
+
+    filebeat.autodiscover:
+      providers:
+        - type: kubernetes
+          templates:
+            - config:
+                - type: container
+                  paths:
+                    - /var/log/containers/*-${data.kubernetes.container.id}.log
+                  exclude_lines: ["^\\s+[\\-`('.|_]"]  # drop asciiart lines
+
+    output.logstash:
+      hosts: ['logstash-service']

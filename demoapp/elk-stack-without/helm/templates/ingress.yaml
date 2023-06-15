@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.ingress.name }}
+spec:
+  ingressClassName: {{ .Values.ingress.class }}
+  rules:
+    - host: elk.internal.com
+      http:
+        paths:
+          - pathType: {{ .Values.ingress.pathType }}
+            backend:
+              service:
+                name: {{ .Values.kibana.service.name }}
+                port:
+                  number: {{ .Values.kibana.service.port }}
+            path: {{ .Values.ingress.path }}

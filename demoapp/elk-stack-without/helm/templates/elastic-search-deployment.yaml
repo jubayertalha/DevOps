@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.elastic.deployment.name }}
+  labels:
+    app: {{ .Values.elastic.deployment.app }}
+spec:
+  replicas: {{ .Values.elastic.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.elastic.deployment.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.elastic.deployment.app }}
+    spec:
+      containers:
+      - name: {{ .Values.elastic.deployment.app }}
+        image: "{{ .Values.elastic.deployment.image }}:{{ .Values.elastic.deployment.tag }}"
+        imagePullPolicy: {{ .Values.elastic.deployment.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.elastic.deployment.containerPortDB }}
+          name: {{ .Values.elastic.deployment.containerPortDBName }}
+        - containerPort: {{ .Values.elastic.deployment.containerPortTrans }}
+          name: {{ .Values.elastic.deployment.containerPortTransName }}
+        env:
+        - name: "network.host"
+          value: 0.0.0.0
+        - name: "xpack.security.enabled"
+          value: "true"
+        - name: "xpack.security.authc.api_key.enabled"
+          value: "true"
+        - name: "discovery.type"
+          value: "single-node"
+        - name: "ES_JAVA_OPTS"
+          value: "-Xms750m -Xmx750m"
+        - name: "ELASTICSEARCH_USERNAME"
+          valueFrom:
+            secretKeyRef:
+              name: "elastic-credentials"
+              key: "elastic-username"
+        - name: "ELASTICSEARCH_PASSWORD"
+          valueFrom:
+            secretKeyRef:
+              name: "elastic-credentials"
+              key: "password"
+        - name: "ELASTIC_PASSWORD"
+          valueFrom:
+            secretKeyRef:
+              name: "elastic-credentials"
+              key: "password"
+        - name: "ELASTIC_USERNAME"
+          valueFrom:
+            secretKeyRef:
+              name: "elastic-credentials"
+              key: "elastic-username"
+        volumeMounts:
+        - name: data
+          mountPath: /usr/share/elasticsearch/data
+      initContainers:
+      - image: alpine:3.6
+        name: elastic-init-sysctl
+        # command: ['/sbin/sysctl', '-w', 'vm.max_map_count=262144']
+        # securityContext:
+        #   privileged: true
+        command: ["/bin/sh","-c"]
+        args: ["sysctl -w vm.max_map_count=262144; chown -R 1000:1000 /usr/share/elasticsearch/data"]
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: data
+          mountPath: /usr/share/elasticsearch/data
+      volumes:
+      - name: data
+        hostPath:
+          path: /mnt/share/elasticsearch/data
+        

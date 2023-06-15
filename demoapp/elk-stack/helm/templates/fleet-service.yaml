@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.fleet.service.name }}
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+    service.beta.kubernetes.io/azure-pls-create: "true"
+spec:
+  selector:
+    app: {{ .Values.fleet.deployment.app }}
+  type: {{ .Values.fleet.service.type }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.fleet.service.port }}
+      targetPort: {{ .Values.fleet.deployment.containerPort }}
