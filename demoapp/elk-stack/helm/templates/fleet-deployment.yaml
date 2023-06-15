@@ -39,13 +39,11 @@ spec:
               value: "1"
             # Set to true to communicate with Fleet with either insecure HTTP or unverified HTTPS
             - name: FLEET_SERVER_ELASTICSEARCH_HOST
-              value: "http://{{ .Values.elastic.service.name }}:80"
+              value: "{{ .Values.elastic.service.name }}:80"
             - name: ELASTICSEARCH_USERNAME
               value: "elastic"
             - name: ELASTICSEARCH_PASSWORD
               value: "changeme"
-            - name: FLEET_SERVER_SERVICE_TOKEN
-              value: "fleet-server-token"
             # Fleet Server URL to enroll the Elastic Agent into
             # FLEET_URL can be found in Kibana, go to Management > Fleet > Settings
             - name: FLEET_SERVER_POLICY_NAME
