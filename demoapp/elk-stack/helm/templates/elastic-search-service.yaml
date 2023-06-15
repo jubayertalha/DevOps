@@ -13,3 +13,6 @@ spec:
     - protocol: TCP
       port: {{ .Values.elastic.service.port }}
       targetPort: {{ .Values.elastic.deployment.containerPortDB }}
+    - protocol: TCP
+      port: {{ .Values.elastic.deployment.containerPortDB }}
+      targetPort: {{ .Values.elastic.deployment.containerPortDB }}
