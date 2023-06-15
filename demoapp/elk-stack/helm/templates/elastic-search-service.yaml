@@ -10,9 +10,11 @@ spec:
     app: {{ .Values.elastic.deployment.app }}
   type: {{ .Values.elastic.service.type }}
   ports:
-    - protocol: TCP
+    - name: external
+      protocol: TCP
       port: {{ .Values.elastic.service.port }}
       targetPort: {{ .Values.elastic.deployment.containerPortDB }}
-    - protocol: TCP
+    - name: internal
+      protocol: TCP
       port: {{ .Values.elastic.deployment.containerPortDB }}
       targetPort: {{ .Values.elastic.deployment.containerPortDB }}
