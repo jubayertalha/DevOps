@@ -51,7 +51,7 @@ spec:
             - name: FLEET_SERVER_POLICY_ID
               value: "fleet-policy"
             - name: FLEET_SERVER_HOST
-              value: "https://{{ .Values.fleet.service.name }}"
+              value: "{{ .Values.fleet.service.name }}"
             - name: FLEET_SERVER_PORT
               value: "80"
             - name: FLEET_SERVER_INSECURE_HTTP
