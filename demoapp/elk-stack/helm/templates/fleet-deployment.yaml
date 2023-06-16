@@ -44,8 +44,16 @@ spec:
               value: "elastic"
             - name: ELASTICSEARCH_PASSWORD
               value: "changeme"
+            # Fleet Server URL to enroll the Elastic Agent into
+            # FLEET_URL can be found in Kibana, go to Management > Fleet > Settings
+            - name: FLEET_SERVER_POLICY_NAME
+              value: "Fleet Policy"
+            # Elasticsearch API key used to enroll Elastic Agents in Fleet (https://www.elastic.co/guide/en/fleet/current/fleet-enrollment-tokens.html#fleet-enrollment-tokens)
+            # If FLEET_ENROLLMENT_TOKEN is empty then KIBANA_HOST, KIBANA_FLEET_USERNAME, KIBANA_FLEET_PASSWORD are needed
+            - name: FLEET_SERVER_POLICY_ID
+              value: "fleet-policy"
             - name: FLEET_SERVER_HOST
-              value: "{{ .Values.fleet.service.name }}"
+              value: "0.0.0.0"
             - name: FLEET_SERVER_PORT
               value: "8220"
             - name: FLEET_SERVER_INSECURE_HTTP
