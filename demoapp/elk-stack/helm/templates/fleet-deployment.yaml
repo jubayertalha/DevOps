@@ -50,6 +50,10 @@ spec:
             # If FLEET_ENROLLMENT_TOKEN is empty then KIBANA_HOST, KIBANA_FLEET_USERNAME, KIBANA_FLEET_PASSWORD are needed
             - name: FLEET_SERVER_POLICY_ID
               value: "fleet-policy"
+            - name: FLEET_SERVER_HOST
+              value: "https://{{ .Values.fleet.service.name }}"
+            - name: FLEET_SERVER_PORT
+              value: "80"
             - name: FLEET_SERVER_INSECURE_HTTP
               value: "true"
             - name: KIBANA_FLEET_HOST
