@@ -30,6 +30,8 @@ spec:
           ports:
           - containerPort: {{ .Values.fleet.deployment.containerPort }}
           env:
+            - name: "network.host"
+              value: 0.0.0.0
             # Set to 1 for enrollment into Fleet server. If not set, Elastic Agent is run in standalone mode
             - name: KIBANA_FLEET_SETUP
               value: "1"
@@ -53,7 +55,7 @@ spec:
             - name: FLEET_SERVER_HOST
               value: "{{ .Values.fleet.service.name }}"
             - name: FLEET_SERVER_PORT
-              value: "80"
+              value: "8220"
             - name: FLEET_SERVER_INSECURE_HTTP
               value: "true"
             - name: FLEET_INSECURE

@@ -65,7 +65,7 @@ fleet:
 
   service:
     name: fleetservice
-    port: 80
+    port: 8220
     type: LoadBalancer
   
 ingress:
