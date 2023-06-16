@@ -64,7 +64,7 @@ fleet:
     pullPolicy: Always
 
   service:
-    name: fleet-service
+    name: fleetservice
     port: 80
     type: LoadBalancer
   
