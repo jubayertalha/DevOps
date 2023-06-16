@@ -40,6 +40,8 @@ spec:
             # Set to true to communicate with Fleet with either insecure HTTP or unverified HTTPS
             - name: FLEET_SERVER_ELASTICSEARCH_HOST
               value: "http://{{ .Values.elastic.service.name }}:80"
+            - name: FLEET_SERVER_ELASTICSEARCH_INSECURE
+              value: "ture"
             - name: ELASTICSEARCH_USERNAME
               value: "elastic"
             - name: ELASTICSEARCH_PASSWORD
@@ -54,6 +56,8 @@ spec:
               value: "1"
             - name: FLEET_URL
               value: "0.0.0.0:8220"
+            - name: FLEET_FORCE
+              value: "1"
             - name: FLEET_TOKEN_NAME
               value: "default"
             - name: FLEET_INSECURE
