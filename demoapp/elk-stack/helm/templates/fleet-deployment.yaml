@@ -50,8 +50,6 @@ spec:
               value: "0.0.0.0"
             - name: FLEET_SERVER_PORT
               value: "8220"
-            - name: FLEET_SERVER_INSECURE_HTTP
-              value: "true"
             - name: FLEET_ENROLL
               value: "1"
             - name: FLEET_URL
