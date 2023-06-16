@@ -21,11 +21,9 @@ spec:
         - key: node-role.kubernetes.io/master
           effect: NoSchedule
       serviceAccountName: elastic-agent
-      hostNetwork: true
       # 'hostPID: true' enables the Elastic Security integration to observe all process exec events on the host.
       # Sharing the host process ID namespace gives visibility of all processes running on the same host.
       hostPID: true
-      dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: elastic-agent
           image: docker.elastic.co/beats/elastic-agent:8.5.3
