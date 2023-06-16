@@ -55,7 +55,7 @@ spec:
             - name: FLEET_ENROLL
               value: "1"
             - name: FLEET_URL
-              value: "0.0.0.0:8220"
+              value: "https://0.0.0.0:8220"
             - name: FLEET_FORCE
               value: "1"
             - name: FLEET_TOKEN_NAME
