@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: elastic-agent
+  name: elasticagent
   labels:
-    app: elastic-agent
+    app: elasticagent
 spec:
   selector:
     matchLabels:
-      app: elastic-agent
+      app: elasticagent
   template:
     metadata:
       labels:
-        app: elastic-agent
+        app: elasticagent
     spec:
       # Tolerations are needed to run Elastic Agent on Kubernetes control-plane nodes.
       # Agents running on control-plane nodes collect metrics from the control plane components (scheduler, controller manager) of Kubernetes
@@ -25,7 +25,7 @@ spec:
       # Sharing the host process ID namespace gives visibility of all processes running on the same host.
       hostPID: true
       containers:
-        - name: elastic-agent
+        - name: elasticagent
           image: docker.elastic.co/beats/elastic-agent:8.5.3
           ports:
           - containerPort: {{ .Values.fleet.deployment.containerPort }}

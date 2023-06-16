@@ -55,8 +55,8 @@ kibana:
 
 fleet:
   deployment:
-    name: fleet-deployment
-    app: elastic-agent
+    name: fleetdeployment
+    app: elasticagent
     replicas: 1
     image: docker.elastic.co/beats/elastic-agent
     tag: 8.5.3
