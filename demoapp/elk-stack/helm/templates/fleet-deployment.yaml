@@ -124,7 +124,7 @@ spec:
       volumes:
         - name: tls-secret
           secret:
-            secretName: tls-secret
+            secretName: nginx-tls
             items:
               - key: tls.crt
                 path: tls.crt
