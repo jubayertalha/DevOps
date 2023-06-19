@@ -60,6 +60,8 @@ spec:
               value: "1"
             - name: FLEET_TOKEN_NAME
               value: "default"
+            - name: FLEET_INSECURE
+              value: "true"
             - name: KIBANA_FLEET_HOST
               value: "http://{{ .Values.kibana.service.name }}:80"
             # The basic authentication username used to connect to Kibana and retrieve a service_token to enable Fleet
