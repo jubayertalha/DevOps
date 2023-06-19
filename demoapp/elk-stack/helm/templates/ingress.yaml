@@ -15,13 +15,3 @@ spec:
                 port:
                   number: {{ .Values.kibana.service.port }}
             path: {{ .Values.ingress.path }}
-    - host: fleet.internal.com
-      http:
-        paths:
-          - pathType: {{ .Values.ingress.pathType }}
-            backend:
-              service:
-                name: {{ .Values.fleet.service.name }}
-                port:
-                  number: {{ .Values.fleet.service.port }}
-            path: {{ .Values.ingress.path }}
