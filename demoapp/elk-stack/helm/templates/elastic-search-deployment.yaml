@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ .Values.elastic.deployment.name }}
   labels:
@@ -24,6 +24,8 @@ spec:
         - containerPort: {{ .Values.elastic.deployment.containerPortTrans }}
           name: {{ .Values.elastic.deployment.containerPortTransName }}
         env:
+        - name: "cluster.name"
+          value: "es-cluster"
         - name: "network.host"
           value: 0.0.0.0
         - name: "xpack.security.enabled"
@@ -31,7 +33,7 @@ spec:
         - name: "xpack.security.authc.api_key.enabled"
           value: "true"
         - name: "discovery.type"
-          value: "single-node"
+          value: "multi-node"
         - name: "ES_JAVA_OPTS"
           value: "-Xms750m -Xmx750m"
         - name: "ELASTICSEARCH_USERNAME"
