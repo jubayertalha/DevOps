@@ -80,6 +80,9 @@ spec:
         args: ["sysctl -w vm.max_map_count=262144; chown -R 1000:1000 /usr/share/elasticsearch"]
         securityContext:
           privileged: true
+        volumeMounts:
+        - name: data
+          mountPath: /usr/share/elasticsearch
       volumes:
       - name: tls-secret
         secret:
