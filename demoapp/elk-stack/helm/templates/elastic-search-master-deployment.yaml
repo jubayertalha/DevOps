@@ -27,10 +27,8 @@ spec:
         env:
         - name: "cluster.name"
           value: "es-cluster"
-        - name: "node.master"
-          value: "true"
-        - name: "node.data"
-          value: "false"
+        - name: "node.roles"
+          value: "master"
         - name: "discovery.seed_hosts"
           value: "{{ .Values.elastic.service.name }},{{ .Values.elastic.service.name }}-data"
         - name: "cluster.initial_master_nodes"
