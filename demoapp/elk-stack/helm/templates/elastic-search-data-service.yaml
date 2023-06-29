@@ -7,8 +7,8 @@ metadata:
     service.beta.kubernetes.io/azure-pls-create: "true"
 spec:
   selector:
-    app: {{ .Values.elastic.deployment.app }}
-  type: {{ .Values.elastic.service.type }}-data
+    app: {{ .Values.elastic.deployment.app }}-data
+  type: {{ .Values.elastic.service.type }}
   ports:
     - name: external
       protocol: TCP
