@@ -7,7 +7,7 @@ metadata:
     service.beta.kubernetes.io/azure-pls-create: "true"
 spec:
   selector:
-    app: {{ .Values.elastic.deployment.app }}
+    app: {{ .Values.elastic.deployment.app }}-master
   type: {{ .Values.elastic.service.type }}
   ports:
     - name: external
