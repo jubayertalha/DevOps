@@ -32,9 +32,9 @@ spec:
         - name: "xpack.security.transport.ssl.verification_mode"
           value: "certificate"
         - name: "xpack.security.transport.ssl.key"
-          value: "/usr/share/elasticsearch/ssl/tls.key"
+          value: "/usr/share/elasticsearch/config/ssl/tls.key"
         - name: "xpack.security.transport.ssl.certificate"
-          value: "/usr/share/elasticsearch/ssl/tls.crt"
+          value: "/usr/share/elasticsearch/config/ssl/tls.crt"
         - name: "xpack.security.transport.ssl.certificate_authorities"
           value: "/usr/share/elasticsearch/config/ssl/tls.crt"
         - name: "network.host"
@@ -69,8 +69,6 @@ spec:
               key: "elastic-username"
         volumeMounts:
         - name: tls-secret
-          mountPath: /usr/share/elasticsearch/ssl
-        - name: tls-authority
           mountPath: /usr/share/elasticsearch/config/ssl
         - name: data
           mountPath: /usr/share/elasticsearch/data
@@ -96,12 +94,6 @@ spec:
               path: tls.crt
             - key: tls.key
               path: tls.key
-      - name: tls-authority
-        secret:
-          secretName: nginx-tls
-          items:
-            - key: tls.crt
-              path: tls.crt
   volumeClaimTemplates:
     - metadata:
         name: data
