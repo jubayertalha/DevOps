@@ -90,5 +90,7 @@ spec:
             - key: tls.key
               path: tls.key
       - name: data
-        persistentVolumeClaim:
-          claimName: {{.Values.pvc.name}}
+        azureFile:
+          secretName: {{ .Values.secret.name }}
+          shareName: elk
+          readOnly: false
