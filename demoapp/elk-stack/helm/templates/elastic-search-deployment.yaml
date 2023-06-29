@@ -36,7 +36,7 @@ spec:
         - name: "xpack.security.transport.ssl.certificate"
           value: "/usr/share/elasticsearch/ssl/tls.crt"
         - name: "xpack.security.transport.ssl.certificate_authorities"
-          value: "/usr/share/elasticsearch/ssl/tls.crt"
+          value: "/usr/share/elasticsearch/config/tls.crt"
         - name: "network.host"
           value: 0.0.0.0
         - name: "xpack.security.enabled"
@@ -70,6 +70,10 @@ spec:
         volumeMounts:
         - name: tls-secret
           mountPath: /usr/share/elasticsearch/ssl
+        - name: tls-authority
+          mountPath: /usr/share/elasticsearch/config
+        - name: data
+          mountPath: /usr/share/elasticsearch/data
       initContainers:
       - image: alpine:3.6
         name: elastic-init-sysctl
@@ -77,12 +81,12 @@ spec:
         # securityContext:
         #   privileged: true
         command: ["/bin/sh","-c"]
-        args: ["sysctl -w vm.max_map_count=262144; chown -R 1000:1000 /usr/share/elasticsearch"]
+        args: ["sysctl -w vm.max_map_count=262144; chown -R 1000:1000 /usr/share/elasticsearch/data"]
         securityContext:
           privileged: true
         volumeMounts:
         - name: data
-          mountPath: /usr/share/elasticsearch
+          mountPath: /usr/share/elasticsearch/data
       volumes:
       - name: tls-secret
         secret:
@@ -92,6 +96,12 @@ spec:
               path: tls.crt
             - key: tls.key
               path: tls.key
+      - name: tls-authority
+        secret:
+          secretName: nginx-tls
+          items:
+            - key: tls.crt
+              path: tls.crt
   volumeClaimTemplates:
     - metadata:
         name: data
