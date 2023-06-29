@@ -29,6 +29,8 @@ spec:
           value: "es-cluster"
         - name: "discovery.seed_hosts"
           value: {{ .Values.elastic.service.name }}
+        - name: "cluster.initial_master_nodes"
+          value: "{{ .Values.elastic.deployment.app }}-0,{{ .Values.elastic.deployment.app }}-1,{{ .Values.elastic.deployment.app }}-2"
         - name: "xpack.security.transport.ssl.enabled"
           value: "true"
         - name: "xpack.security.transport.ssl.verification_mode"
