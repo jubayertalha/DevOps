@@ -91,4 +91,4 @@ spec:
               path: tls.key
       - name: data
         persistentVolumeClaim:
-          claimName: {{.Values.volume.name}}
+          claimName: {{.Values.pvc.name}}
