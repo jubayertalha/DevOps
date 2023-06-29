@@ -94,3 +94,4 @@ spec:
           secretName: {{ .Values.secret.name }}
           shareName: elk-1
           readOnly: false
+          subPath: $(POD_NAME)
