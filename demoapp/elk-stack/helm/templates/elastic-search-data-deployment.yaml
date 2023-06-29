@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ .Values.elastic.deployment.name }}
+  name: {{ .Values.elastic.deployment.name }}-data
   labels:
-    app: {{ .Values.elastic.deployment.app }}
+    app: {{ .Values.elastic.deployment.app }}-data
 spec:
-  serviceName: {{ .Values.elastic.service.name }}
+  serviceName: {{ .Values.elastic.service.name }}-data
   replicas: {{ .Values.elastic.deployment.replicas }}
   selector:
     matchLabels:
-      app: {{ .Values.elastic.deployment.app }}
+      app: {{ .Values.elastic.deployment.app }}-data
   template:
     metadata:
       labels:
-        app: {{ .Values.elastic.deployment.app }}
+        app: {{ .Values.elastic.deployment.app }}-data
     spec:
       containers:
-      - name: {{ .Values.elastic.deployment.app }}
+      - name: {{ .Values.elastic.deployment.app }}-data
         image: "{{ .Values.elastic.deployment.image }}:{{ .Values.elastic.deployment.tag }}"
         imagePullPolicy: {{ .Values.elastic.deployment.pullPolicy }}
         ports:
@@ -27,10 +27,14 @@ spec:
         env:
         - name: "cluster.name"
           value: "es-cluster"
+        - name: "node.master"
+          value: "false"
+        - name: "node.data"
+          value: "true"
         - name: "discovery.seed_hosts"
-          value: {{ .Values.elastic.service.name }}
+          value: "{{ .Values.elastic.service.name }},{{ .Values.elastic.service.name }}-data"
         - name: "cluster.initial_master_nodes"
-          value: "{{ .Values.elastic.deployment.app }}-0,{{ .Values.elastic.deployment.app }}-1,{{ .Values.elastic.deployment.app }}-2"
+          value: "{{ .Values.elastic.deployment.app }}-master-0,{{ .Values.elastic.deployment.app }}-master-1"
         - name: "xpack.security.transport.ssl.enabled"
           value: "true"
         - name: "xpack.security.transport.ssl.verification_mode"
