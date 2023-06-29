@@ -6,7 +6,7 @@ metadata:
     app: elasticagent
   annotations:
     "helm.sh/hook": post-install
-    "helm.sh/hook-weight": "-4"
+    "helm.sh/hook-weight": "4"
 spec:
   selector:
     matchLabels:
