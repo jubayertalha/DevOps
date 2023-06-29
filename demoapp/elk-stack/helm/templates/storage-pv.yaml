@@ -12,10 +12,10 @@ spec:
   csi:
     driver: file.csi.azure.com
     readOnly: false
-    volumeHandle: {{ .Values.secret.handle }}
+    volumeHandle: {{ .Values.pv.handle }}
     volumeAttributes:
       resourceGroup: aks-rg
-      shareName: {{ .Values.secret.sharename }}
+      shareName: {{ .Values.pv.sharename }}
     nodeStageSecretRef:
       name: {{ .Values.secret.name }}
       namespace: default
