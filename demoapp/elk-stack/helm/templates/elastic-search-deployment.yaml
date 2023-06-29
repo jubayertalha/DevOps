@@ -36,7 +36,7 @@ spec:
         - name: "xpack.security.transport.ssl.certificate"
           value: "/usr/share/elasticsearch/ssl/tls.crt"
         - name: "xpack.security.transport.ssl.certificate_authorities"
-          value: "/usr/share/elasticsearch/config/tls.crt"
+          value: "/usr/share/elasticsearch/config/ssl/tls.crt"
         - name: "network.host"
           value: 0.0.0.0
         - name: "xpack.security.enabled"
@@ -71,7 +71,7 @@ spec:
         - name: tls-secret
           mountPath: /usr/share/elasticsearch/ssl
         - name: tls-authority
-          mountPath: /usr/share/elasticsearch/config
+          mountPath: /usr/share/elasticsearch/config/ssl
         - name: data
           mountPath: /usr/share/elasticsearch/data
       initContainers:
