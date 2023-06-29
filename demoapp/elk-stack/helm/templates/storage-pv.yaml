@@ -8,17 +8,23 @@ spec:
   accessModes:
     - {{.Values.volume.accessModes}}
   persistentVolumeReclaimPolicy: {{.Values.volume.reclaimPolicy}}
-  storageClassName: managed-csi
-#   mountOptions:
-#     - -o allow_other
-#     - --file-cache-timeout-in-seconds=120
+  storageClassName: azurefile-csi
   csi:
-    driver: disk.csi.azure.com
+    driver: file.csi.azure.com
     readOnly: false
-    volumeHandle: {{.Values.volume.handle}}
+    volumeHandle: {{ .Values.secret.handle }}
     volumeAttributes:
-    #   containerName: {{.Values.volume.containerName}}
-      fsType: ext4
-    # nodeStageSecretRef:
-    #   name: {{.Values.secret.name}}
-    #   namespace: default
+      resourceGroup: aks-rg
+      shareName: {{ .Values.secret.sharename }}
+    nodeStageSecretRef:
+      name: {{ .Values.secret.name }}
+      namespace: default
+  mountOptions:
+    - dir_mode=0777
+    - file_mode=0777
+    - uid=0
+    - gid=0
+    - mfsymlinks
+    - cache=strict
+    - nosharesock
+    - nobrl

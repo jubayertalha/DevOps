@@ -77,18 +77,18 @@ ingress:
 secret:
   name: storage-secret
   type: Opaque
-  azurestorageaccountname: myblob221
-  azurestorageaccountkey: "G/a0XHwQ2uU59PqWVmWLIJfjZnhnJDYDBR7p0tFxpCI9PyGBrgSJQ33MGalVHvamSKJO7IN5U1uL+AStKt2drQ=="
+  azurestorageaccountname: storageacc2211
+  azurestorageaccountkey: "hB1Z5skpT97dHCAE3A//b6kBon3BBxXe2xsr9XxSuTr0+KNfFgfS1DjaSYjyd94S/DrbEVwm3SbE+AStkmLQwg=="
 
 volume:
-  name: ec-pv
+  name: es-pv
   storage: 10Gi
   accessModes: ReadWriteOnce
   reclaimPolicy: Retain
-  handle: "/subscriptions/863fda5d-6174-4448-8f7b-f8b0f9008431/resourcegroups/MC_aks-rg_aks-poc-1_eastus/providers/Microsoft.Compute/disks/mydisk221"
-  containerName: eccontainer
+  handle: "es-pv-elk"
+  sharename: elk
 
 pvc:
-  name: ec-pvc
+  name: es-pvc
   accessModes: ReadWriteOnce
   storage: 10Gi

@@ -55,16 +55,6 @@ spec:
           value: "multi-node"
         - name: "ES_JAVA_OPTS"
           value: "-Xms750m -Xmx750m"
-        - name: "KIBANA_SYSTEM_USERNAME"
-          valueFrom:
-            secretKeyRef:
-              name: "elastic-credentials"
-              key: "kibana-username"
-        - name: "KIBANA_SYSTEM_PASSWORD"
-          valueFrom:
-            secretKeyRef:
-              name: "elastic-credentials"
-              key: "password"
         - name: "ELASTIC_PASSWORD"
           valueFrom:
             secretKeyRef:
@@ -83,9 +73,6 @@ spec:
       initContainers:
       - image: alpine:3.6
         name: elastic-init-sysctl
-        # command: ['/sbin/sysctl', '-w', 'vm.max_map_count=262144']
-        # securityContext:
-        #   privileged: true
         command: ["/bin/sh","-c"]
         args: ["sysctl -w vm.max_map_count=262144; chown -R 1000:1000 /usr/share/elasticsearch/data"]
         securityContext:
@@ -102,12 +89,6 @@ spec:
               path: tls.crt
             - key: tls.key
               path: tls.key
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-      spec:
-        accessModes: [ "ReadWriteOnce" ]
-        storageClassName: "default"
-        resources:
-          requests:
-            storage: 10Gi
+      - name: data
+        persistentVolumeClaim:
+          claimName: {{.Values.volume.name}}
