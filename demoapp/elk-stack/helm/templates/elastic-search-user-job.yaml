@@ -12,7 +12,7 @@ spec:
       containers:
       - name: kibana-system-user
         image: appropriate/curl
-        command: ['sh', '-c', 'curl -X POST "http://{{ .Values.elastic.service.name }}:9200/_security/user/$KIBANA_SYSTEM_USERNAME/_password?pretty" -H "Content-Type: application/json" -d"{ "password" : "$PASSWORD" }"', 'curl -X POST "http://{{ .Values.elastic.service.name }}:9200/_security/user/$ELASTIC_USERNAME/_password?pretty" -H "Content-Type: application/json" -d"{ "password" : "$PASSWORD" }"']
+        command: ['sh', '-c', 'curl -X POST -u elastic:changeme "http://{{ .Values.elastic.service.name }}:9200/_security/user/$KIBANA_SYSTEM_USERNAME/_password?pretty" -H "Content-Type: application/json" -d"{ "password" : "$PASSWORD" }"', 'curl -X POST "http://{{ .Values.elastic.service.name }}:9200/_security/user/$ELASTIC_USERNAME/_password?pretty" -H "Content-Type: application/json" -d"{ "password" : "$PASSWORD" }"']
         env:
         - name: "KIBANA_SYSTEM_USERNAME"
           valueFrom:

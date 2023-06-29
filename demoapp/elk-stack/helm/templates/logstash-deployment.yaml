@@ -4,9 +4,6 @@ metadata:
   name: {{ .Values.logstash.deployment.name }}
   labels:
     app: {{ .Values.logstash.deployment.app }}
-  annotations:
-    "helm.sh/hook": post-install
-    "helm.sh/hook-weight": "3"
 spec:
   replicas: {{ .Values.logstash.deployment.replicas }}
   selector:
