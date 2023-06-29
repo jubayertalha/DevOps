@@ -2,7 +2,7 @@ elastic:
   deployment:
     name: elastic-search
     app: elastic-search
-    replicas: 3
+    replicas: 2
     image: elasticsearch
     tag: 8.5.3
     containerPortDB: 9200
