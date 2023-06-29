@@ -92,12 +92,12 @@ spec:
               path: tls.crt
             - key: tls.key
               path: tls.key
-      volumeClaimTemplates:
-      - metadata:
-          name: data
-        spec:
-          accessModes: [ "ReadWriteOnce" ]
-          storageClassName: "standard"
-          resources:
-            requests:
-              storage: 10Gi
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: "standard"
+        resources:
+          requests:
+            storage: 10Gi
