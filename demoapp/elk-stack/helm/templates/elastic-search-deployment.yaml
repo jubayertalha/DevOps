@@ -92,7 +92,13 @@ spec:
               path: tls.crt
             - key: tls.key
               path: tls.key
-      - name: data
-        hostPath:
-          path: /mnt/share/elasticsearch/data
-        
+      
+      volumeClaimTemplates:
+      - metadata:
+          name: data
+        spec:
+          accessModes: [ "ReadWriteOnce" ]
+          storageClassName: "standard"
+          resources:
+            requests:
+              storage: 10Gi
