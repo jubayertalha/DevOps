@@ -4,6 +4,9 @@ metadata:
   name: {{ .Values.kibana.deployment.name }}
   labels:
     app: {{ .Values.kibana.deployment.app }}
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "-3"
 spec:
   replicas: {{ .Values.kibana.deployment.replicas }}
   selector:

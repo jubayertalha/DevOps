@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-kibana-system-user
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "-2"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: kibana-system-user
+        image: appropriate/curl
+        command: ['sh', '-c', 'curl -X POST "http://{{ .Values.elastic.service.name }}:9200/_security/user/$KIBANA_SYSTEM_USERNAME/_password?pretty" -H "Content-Type: application/json" -d"{ "password" : "$PASSWORD" }"', 'curl -X POST "http://{{ .Values.elastic.service.name }}:9200/_security/user/$ELASTIC_USERNAME/_password?pretty" -H "Content-Type: application/json" -d"{ "password" : "$PASSWORD" }"']
+        env:
+        - name: "KIBANA_SYSTEM_USERNAME"
+          valueFrom:
+            secretKeyRef:
+              name: "elastic-credentials"
+              key: "kibana-username"
+        - name: "ELASTIC_USERNAME"
+          valueFrom:
+            secretKeyRef:
+              name: "elastic-credentials"
+              key: "elastic-username"
+        - name: "PASSWORD"
+          valueFrom:
+            secretKeyRef:
+              name: "elastic-credentials"
+              key: "password"
+      restartPolicy: Never

@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wait-for-elasticsearch
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "-1"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: wait-for-elasticsearch
+        image: busybox:1.32
+        command: ["sh", "-c", "until wget -q -O- http://{{ .Values.elastic.service.name }}:9200/_cluster/health?wait_for_status=yellow; do sleep 2; done"]
+      restartPolicy: Never
