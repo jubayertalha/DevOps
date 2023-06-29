@@ -18,3 +18,7 @@ spec:
       protocol: TCP
       port: {{ .Values.elastic.deployment.containerPortDB }}
       targetPort: {{ .Values.elastic.deployment.containerPortDB }}
+    - name: transport
+      protocol: TCP
+      port: {{ .Values.elastic.deployment.containerPortTrans }}
+      targetPort: {{ .Values.elastic.deployment.containerPortTrans }}

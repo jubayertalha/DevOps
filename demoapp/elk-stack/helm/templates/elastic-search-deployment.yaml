@@ -28,7 +28,7 @@ spec:
         - name: "cluster.name"
           value: "es-cluster"
         - name: "discovery.seed_hosts"
-          value: "elasticsearch-0.elasticsearch,elasticsearch-1.elasticsearch,elasticsearch-2.elasticsearch"
+          value: {{ .Values.elastic.service.name }}
         - name: "xpack.security.transport.ssl.enabled"
           value: "true"
         - name: "xpack.security.transport.ssl.verification_mode"
