@@ -80,12 +80,13 @@ spec:
           mountPath: /usr/share/elasticsearch/config/ssl
         - name: data
           mountPath: /usr/share/elasticsearch/data
+        - name: config
+          mountPath: /usr/share/elasticsearch/config/elasticsearch.yml
+          readOnly: true
+          subPath: elasticsearch.yml
       initContainers:
       - image: alpine:3.6
         name: elastic-init-sysctl
-        # command: ['/sbin/sysctl', '-w', 'vm.max_map_count=262144']
-        # securityContext:
-        #   privileged: true
         command: ["/bin/sh","-c"]
         args: ["sysctl -w vm.max_map_count=262144; chown -R 1000:1000 /usr/share/elasticsearch/data"]
         securityContext:
@@ -94,6 +95,10 @@ spec:
         - name: data
           mountPath: /usr/share/elasticsearch/data
       volumes:
+      - name: config
+        configMap:
+          defaultMode: 0640
+          name: elastic-config
       - name: tls-secret
         secret:
           secretName: nginx-tls
@@ -102,12 +107,8 @@ spec:
               path: tls.crt
             - key: tls.key
               path: tls.key
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-      spec:
-        accessModes: [ "ReadWriteOnce" ]
-        storageClassName: "default"
-        resources:
-          requests:
-            storage: 10Gi
+      - name: data
+        azureFile:
+          secretName: {{ .Values.secret.name }}
+          shareName: elk-stack
+          readOnly: false
