@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: elastic-config
 data:
-  filebeat.yml: |-
+  elasticsearch.yml: |-
     path.data: "/usr/share/elasticsearch/data/${HOSTNAME}"
