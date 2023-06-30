@@ -71,7 +71,7 @@ spec:
         - name: data
           mountPath: /usr/share/elasticsearch/data
         - name: config
-          mountPath: /usr/share/elasticsearch/elasticsearch.yml
+          mountPath: /usr/share/elasticsearch/config/elasticsearch.yml
           readOnly: true
           subPath: elasticsearch.yml
       initContainers:
