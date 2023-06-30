@@ -55,16 +55,6 @@ spec:
           value: "multi-node"
         - name: "ES_JAVA_OPTS"
           value: "-Xms750m -Xmx750m"
-        - name: "KIBANA_SYSTEM_USERNAME"
-          valueFrom:
-            secretKeyRef:
-              name: "elastic-credentials"
-              key: "kibana-username"
-        - name: "KIBANA_SYSTEM_PASSWORD"
-          valueFrom:
-            secretKeyRef:
-              name: "elastic-credentials"
-              key: "password"
         - name: "ELASTIC_PASSWORD"
           valueFrom:
             secretKeyRef:
