@@ -65,6 +65,9 @@ spec:
             secretKeyRef:
               name: "elastic-credentials"
               key: "elastic-username"
+        - name: "path.data"
+          value: /usr/share/elasticsearch/data
+          subPathExpr: $(HOSTNAME)
         volumeMounts:
         - name: tls-secret
           mountPath: /usr/share/elasticsearch/config/ssl
@@ -74,7 +77,7 @@ spec:
       - image: alpine:3.6
         name: elastic-init-sysctl
         command: ["/bin/sh","-c"]
-        args: ["sysctl -w vm.max_map_count=262144; chown -R 1000:1000 /usr/share/elasticsearch/data; export path.data=/usr/share/elasticsearch/data/$HOSTNAME"]
+        args: ["sysctl -w vm.max_map_count=262144; chown -R 1000:1000 /usr/share/elasticsearch/data"]
         securityContext:
           privileged: true
         volumeMounts:
