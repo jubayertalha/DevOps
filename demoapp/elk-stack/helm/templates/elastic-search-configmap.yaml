@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: elastic-config
+data:
+  filebeat.yml: |-
+    papath.data: "/usr/share/elasticsearch/data/${HOSTNAME}"
