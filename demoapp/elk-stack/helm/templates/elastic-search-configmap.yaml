@@ -4,4 +4,4 @@ metadata:
   name: elastic-config
 data:
   filebeat.yml: |-
-    papath.data: "/usr/share/elasticsearch/data/${HOSTNAME}"
+    path.data: "/usr/share/elasticsearch/data/${HOSTNAME}"
