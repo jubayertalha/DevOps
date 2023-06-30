@@ -67,7 +67,7 @@ spec:
               key: "elastic-username"
         - name: "path.data"
           value: /usr/share/elasticsearch/data
-          subPathExpr: $(HOSTNAME)
+          subPath: $(HOSTNAME)
         volumeMounts:
         - name: tls-secret
           mountPath: /usr/share/elasticsearch/config/ssl
