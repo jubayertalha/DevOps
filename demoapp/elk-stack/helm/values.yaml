@@ -79,16 +79,3 @@ secret:
   type: Opaque
   azurestorageaccountname: storageacc2211
   azurestorageaccountkey: "hB1Z5skpT97dHCAE3A//b6kBon3BBxXe2xsr9XxSuTr0+KNfFgfS1DjaSYjyd94S/DrbEVwm3SbE+AStkmLQwg=="
-
-volume:
-  name: es-pv
-  storage: 10Gi
-  accessModes: ReadWriteOnce
-  reclaimPolicy: Retain
-  handle: "es-pv-elk"
-  sharename: elk
-
-pvc:
-  name: es-pvc
-  accessModes: ReadWriteOnce
-  storage: 10Gi
