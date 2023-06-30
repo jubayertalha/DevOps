@@ -70,6 +70,10 @@ spec:
           mountPath: /usr/share/elasticsearch/config/ssl
         - name: data
           mountPath: /usr/share/elasticsearch/data
+        - name: config
+          mountPath: /usr/share/elasticsearch/elasticsearch.yml
+          readOnly: true
+          subPath: elasticsearch.yml
       initContainers:
       - image: alpine:3.6
         name: elastic-init-sysctl
@@ -80,10 +84,6 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /usr/share/elasticsearch/data
-        - name: config
-          mountPath: /usr/share/elasticsearch/elasticsearch.yml
-          readOnly: true
-          subPath: filebeat.yml
       volumes:
       - name: config
         configMap:
