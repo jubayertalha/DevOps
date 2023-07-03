@@ -100,5 +100,5 @@ spec:
       - name: data
         azureFile:
           secretName: {{ .Values.secret.name }}
-          shareName: elk-stack-1
+          shareName: elk-stack-2
           readOnly: false

@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kibana-config
+data:
+  kibana.yml: |-
+    xpack.fleet.packages:
+      - name: fleet_server
+        version: latest
+      - name: system
+        version: latest
+      - name: elastic_agent
+        version: latest
+    xpack.fleet.agentPolicies:
+      - name: Fleet Server policy
+        id: fleet-server-policy
+        namespace: default
+        monitoring_enabled:
+          - logs
+          - metrics
+        package_policies:
+          - name: fleet_server-1
+            package:
+              name: fleet_server
+          - name: system-1
+            package:
+              name: system
+          - name: elastic_agent-1
+            package:
+              name: elastic_agent
