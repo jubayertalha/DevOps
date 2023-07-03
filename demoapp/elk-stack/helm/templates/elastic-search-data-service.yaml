@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.elastic.service.name }}-data
 spec:
   selector:
-    app: {{ .Values.elastic.deployment.app }}-data
+    app: {{ .Values.elastic.deployment.app }}-master
   type: ClusterIP
   ports:
     - name: internal

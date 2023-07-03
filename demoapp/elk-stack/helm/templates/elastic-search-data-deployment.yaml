@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ .Values.elastic.deployment.app }}-data
 spec:
-  serviceName: {{ .Values.elastic.service.name }}-data
+  serviceName: {{ .Values.elastic.service.name }}
   replicas: {{ .Values.elastic.deployment.replicas }}
   selector:
     matchLabels:
