@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-blob-nfs
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain  # If set as "Delete" container would be removed after pvc deletion
+  storageClassName: azureblob-nfs-premium
+  csi:
+    driver: blob.csi.azure.com
+    readOnly: false
+    # make sure this volumeid is unique in the cluster
+    # `#` is not allowed in self defined volumeHandle
+    volumeHandle: myblob22_testcont1
+    volumeAttributes:
+      resourceGroup: aks-rg
+      storageAccount: stacc2222
+      containerName: elk
+      protocol: nfs
