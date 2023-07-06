@@ -77,5 +77,5 @@ ingress:
 secret:
   name: storage-secret
   type: Opaque
-  azurestorageaccountname: storageacc2211
-  azurestorageaccountkey: "hB1Z5skpT97dHCAE3A//b6kBon3BBxXe2xsr9XxSuTr0+KNfFgfS1DjaSYjyd94S/DrbEVwm3SbE+AStkmLQwg=="
+  azurestorageaccountname: stacc2211
+  azurestorageaccountkey: "2HQwGTYqfZS8z+YcMJxz5ybiq9gYAprDJnWw9Juz8lwW3onle3MG6m4/ijhFkuDhXEPAOxJeWz4n+AStG1xsJw=="
