@@ -28,7 +28,7 @@ spec:
         - name: "cluster.name"
           value: "es-cluster"
         - name: "node.roles"
-          value: ""
+          value: "[ ]"
         - name: "discovery.seed_hosts"
           value: "{{ .Values.elastic.service.name }}-master"
         - name: "cluster.initial_master_nodes"
