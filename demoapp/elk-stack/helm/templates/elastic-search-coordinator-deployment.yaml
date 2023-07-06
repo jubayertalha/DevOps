@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ .Values.elastic.deployment.name }}-master
+  name: {{ .Values.elastic.deployment.name }}-coordiantor
   labels:
-    app: {{ .Values.elastic.deployment.app }}-master
+    app: {{ .Values.elastic.deployment.app }}-coordiantor
 spec:
-  serviceName: {{ .Values.elastic.service.name }}-master
+  serviceName: {{ .Values.elastic.service.name }}
   replicas: {{ .Values.elastic.deployment.replicas }}
   selector:
     matchLabels:
-      app: {{ .Values.elastic.deployment.app }}-master
+      app: {{ .Values.elastic.deployment.app }}-coordiantor
   template:
     metadata:
       labels:
-        app: {{ .Values.elastic.deployment.app }}-master
+        app: {{ .Values.elastic.deployment.app }}-coordiantor
     spec:
       containers:
-      - name: {{ .Values.elastic.deployment.app }}-master
+      - name: {{ .Values.elastic.deployment.app }}-coordiantor
         image: "{{ .Values.elastic.deployment.image }}:{{ .Values.elastic.deployment.tag }}"
         imagePullPolicy: {{ .Values.elastic.deployment.pullPolicy }}
         ports:
@@ -28,7 +28,7 @@ spec:
         - name: "cluster.name"
           value: "es-cluster"
         - name: "node.roles"
-          value: "master"
+          value: ""
         - name: "discovery.seed_hosts"
           value: "{{ .Values.elastic.service.name }}-master"
         - name: "cluster.initial_master_nodes"
