@@ -27,8 +27,6 @@ spec:
         env:
         - name: "cluster.name"
           value: "es-cluster"
-        - name: "node.roles"
-          value: "master"
         - name: "discovery.seed_hosts"
           value: "{{ .Values.elastic.service.name }}"
         - name: "cluster.initial_master_nodes"
@@ -100,5 +98,5 @@ spec:
       - name: data
         azureFile:
           secretName: {{ .Values.secret.name }}
-          shareName: elk-stack
+          shareName: elk-stack-1
           readOnly: false
