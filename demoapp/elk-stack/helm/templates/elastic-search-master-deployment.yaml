@@ -96,7 +96,5 @@ spec:
             - key: tls.key
               path: tls.key
       - name: data
-        azureFile:
-          secretName: {{ .Values.secret.name }}
-          shareName: elk-stack-1
-          readOnly: false
+        hostPath:
+          path: /mnt/share/elasticsearch/data
