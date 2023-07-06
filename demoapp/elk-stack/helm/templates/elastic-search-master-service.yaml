@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: {{ .Values.elastic.service.name }}-master
 spec:
-  selector:
-    app: {{ .Values.elastic.deployment.app }}-master
   type: ClusterIP
   ports:
     - name: internal

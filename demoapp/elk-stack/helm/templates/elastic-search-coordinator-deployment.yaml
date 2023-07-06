@@ -30,7 +30,7 @@ spec:
         - name: "node.roles"
           value: "[ ]"
         - name: "discovery.seed_hosts"
-          value: "{{ .Values.elastic.service.name }}-master"
+          value: "{{ .Values.elastic.service.name }}"
         - name: "cluster.initial_master_nodes"
           value: "{{ .Values.elastic.deployment.app }}-master-0,{{ .Values.elastic.deployment.app }}-master-1"
         - name: "xpack.security.transport.ssl.enabled"

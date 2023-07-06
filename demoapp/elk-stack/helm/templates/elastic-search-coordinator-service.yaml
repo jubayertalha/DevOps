@@ -6,8 +6,6 @@ metadata:
     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
     service.beta.kubernetes.io/azure-pls-create: "true"
 spec:
-  selector:
-    app: {{ .Values.elastic.deployment.app }}-coordinator
   type: {{ .Values.elastic.service.type }}
   ports:
     - name: external
