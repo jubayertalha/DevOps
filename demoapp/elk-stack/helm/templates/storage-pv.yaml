@@ -8,7 +8,7 @@ spec:
   accessModes:
     - {{.Values.volume.accessModes}}
   persistentVolumeReclaimPolicy: {{.Values.volume.reclaimPolicy}}
-  storageClassName: elk-sc
+  storageClassName: managed-csi
   csi:
     driver: disk.csi.azure.com
     readOnly: false
