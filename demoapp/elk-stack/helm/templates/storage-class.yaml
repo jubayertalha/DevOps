@@ -4,6 +4,6 @@ metadata:
   name: elk-sc
 provisioner: kubernetes.io/azure-disk
 parameters:
-  skuname: StandardSSD_LRS
+  skuname: Standard_LRS
   kind: Managed
   cachingmode: None
