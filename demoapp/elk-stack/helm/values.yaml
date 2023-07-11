@@ -85,7 +85,7 @@ volume:
   storage: 10Gi
   accessModes: ReadWriteOnce
   reclaimPolicy: Retain
-  handle: "/subscriptions/863fda5d-6174-4448-8f7b-f8b0f9008431/resourcegroups/aks-rg/providers/Microsoft.Compute/disks/mydisk221"
+  handle: "/subscriptions/863fda5d-6174-4448-8f7b-f8b0f9008431/resourcegroups/aks-rg/providers/Microsoft.Compute/disks/mydisk222"
 
 pvc:
   name: es-data-pvc
