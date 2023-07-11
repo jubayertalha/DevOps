@@ -83,11 +83,11 @@ secret:
 volume:
   name: es-data-pv
   storage: 10Gi
-  accessModes: ReadWriteOnce
+  accessModes: ReadWriteMany
   reclaimPolicy: Retain
   handle: "/subscriptions/863fda5d-6174-4448-8f7b-f8b0f9008431/resourcegroups/aks-rg/providers/Microsoft.Compute/disks/mydisk222"
 
 pvc:
   name: es-data-pvc
-  accessModes: ReadWriteOnce
+  accessModes: ReadWriteMany
   storage: 10Gi
