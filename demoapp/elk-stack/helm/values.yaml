@@ -89,5 +89,5 @@ volume:
 
 pvc:
   name: es-data-pvc
-  accessModes: ReadWriteMany
+  accessModes: ReadWriteOnce
   storage: 10Gi
