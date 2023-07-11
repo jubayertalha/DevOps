@@ -9,4 +9,4 @@ spec:
     requests:
       storage: {{.Values.pvc.storage}}
   volumeName: {{.Values.volume.name}}
-  storageClassName: managed-csi
+  storageClassName: elk-sc
