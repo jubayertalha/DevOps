@@ -15,16 +15,16 @@ spec:
       labels:
         app: {{ .Values.elastic.deployment.app }}-master
     spec:
-      # affinity:
-      #   podAffinity:
-      #     requiredDuringSchedulingIgnoredDuringExecution:
-      #     - labelSelector:
-      #         matchExpressions:
-      #         - key: app
-      #           operator: In
-      #           values:
-      #           - {{ .Values.elastic.deployment.app }}-master
-      #       topologyKey: "kubernetes.io/hostname"
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - {{ .Values.elastic.deployment.app }}-master
+            topologyKey: "kubernetes.io/hostname"
       containers:
       - name: {{ .Values.elastic.deployment.app }}-master
         image: "{{ .Values.elastic.deployment.image }}:{{ .Values.elastic.deployment.tag }}"
