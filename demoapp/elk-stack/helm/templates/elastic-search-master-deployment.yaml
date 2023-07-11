@@ -97,4 +97,4 @@ spec:
               path: tls.key
       - name: data
         persistentVolumeClaim:
-          claimName: pvc-blob-nfs
+          claimName: {{.Values.pvc.name}}
