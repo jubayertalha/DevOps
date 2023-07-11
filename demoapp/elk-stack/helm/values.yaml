@@ -81,13 +81,13 @@ secret:
   azurestorageaccountkey: "2HQwGTYqfZS8z+YcMJxz5ybiq9gYAprDJnWw9Juz8lwW3onle3MG6m4/ijhFkuDhXEPAOxJeWz4n+AStG1xsJw=="
 
 volume:
-  name: es-pv
+  name: es-data-pv
   storage: 10Gi
   accessModes: ReadWriteOnce
   reclaimPolicy: Retain
   handle: "/subscriptions/863fda5d-6174-4448-8f7b-f8b0f9008431/resourcegroups/aks-rg/providers/Microsoft.Compute/disks/mydisk221"
 
 pvc:
-  name: es-pvc
+  name: es-data-pvc
   accessModes: ReadWriteOnce
   storage: 10Gi
