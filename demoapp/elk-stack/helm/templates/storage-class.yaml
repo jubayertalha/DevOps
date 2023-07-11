@@ -7,3 +7,4 @@ parameters:
   skuname: Standard_LRS
   kind: Managed
   cachingmode: None
+volumeBindingMode: WaitForFirstConsumer
