@@ -40,7 +40,7 @@ Location=$(az group list \
 az aks create \
   -g $AKS_RG \
   -n $AKS_NAME \
-  --kubernetes-version 1.24.9 \
+  --kubernetes-version 1.28.0 \
   --location $Location \
   --enable-managed-identity \
   --assign-identity $Identity \
